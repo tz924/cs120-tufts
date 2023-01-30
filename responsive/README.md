@@ -1,7 +1,7 @@
 # Lab 5 Responsive Design
 
 1. Identify what aspects of the work have been correctly implemented and what have not.
-  Implemented the non-full-width version. Behavior is implemented correctly.
+  Implemented the non-full-width version. Required behavior is implemented correctly.
 
 2. Identify anyone with whom you have collaborated or discussed the lab.
   None.
