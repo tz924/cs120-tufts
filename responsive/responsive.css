@@ -1,72 +1,71 @@
+/* Mobile First
+ * Start with the small screen first, then expand until it looks like shit.
+ * Time for a breakpoint!
+ * – Stephen Hay
+ */
+
 .homer {
-    /* Image: 333 x 500 */
-    width: calc(333px / 2);
-    height: calc(500px / 4);
-    background-color: black;
-    background-image: url("./homer.jpg");
-    background-repeat: no-repeat;
+  /* Image: 333 x 500 */
+  width: calc(333px / 2);
+  height: calc(500px / 4);
+  background-image: url("./homer.jpg");
+
+  /* Scene 8 */
+  background-position: bottom right;
+}
+
+@media only screen and (min-width: 601px) {
+
+  /* Scene 7 */
+  .homer {
+    background-position: bottom left;
+  }
+}
+
+@media only screen and (min-width: 701px) {
+
+  /* Scene 6 */
+  .homer {
+    background-position: bottom calc(-500px / 4) right;
+  }
+}
+
+@media only screen and (min-width: 801px) {
+
+  /* Scene 5 */
+  .homer {
+    background-position: bottom calc(-500px / 4) left;
+  }
+}
+
+@media only screen and (min-width: 901px) {
+
+  /* Scene 4 */
+  .homer {
+    background-position: top calc(-500px / 4) right;
+  }
+}
+
+@media only screen and (min-width: 1001px) {
+
+  /* Scene 3 */
+  .homer {
+    background-position: top calc(-500px / 4) left;
+  }
+}
+
+@media only screen and (min-width: 1101px) {
+
+  /* Scene 2 */
+  .homer {
+    background-position: top right;
+  }
 }
 
 @media only screen and (min-width: 1201px) {
 
-    /* Top-left */
-    .homer {
-        background-position: 0px 0px;
-    }
-}
-
-@media only screen and (max-width: 1200px) {
-
-    /* 2nd on 1st row */
-    .homer {
-        background-position: calc(-1 * calc(333px / 2)) 0px;
-    }
-}
-
-@media only screen and (max-width: 1100px) {
-
-    /* 1st on 2nd row */
-    .homer {
-        background-position: 0px calc(-1 * calc(500px / 4));
-    }
-}
-
-@media only screen and (max-width: 1000px) {
-
-    /* 2nd on 2nd row */
-    .homer {
-        background-position: calc(-1 * calc(333px / 2)) calc(-1 * calc(500px / 4));
-    }
-}
-
-@media only screen and (max-width: 900px) {
-
-    /* 1st on 3rd row */
-    .homer {
-        background-position: 0px calc(-2 * calc(500px / 4));
-    }
-}
-
-@media only screen and (max-width: 800px) {
-
-    /* 2nd on 3rd row */
-    .homer {
-        background-position: calc(-1 * calc(333px / 2)) calc(-2 * calc(500px / 4));
-    }
-}
-
-@media only screen and (max-width: 700px) {
-
-    /* 1st on 4th row */
-    .homer {
-        background-position: 0px calc(-3 * calc(500px / 4));
-    }
-}
-
-@media only screen and (max-width: 600px) {
-
-    /* Bottom-right */
-    .homer {
-        background-position: calc(-1 * calc(333px / 2)) calc(-3 * calc(500px / 4));
-    }
+  /* Scene 1 */
+  .homer {
+    background-position: top left;
+  }
 }
