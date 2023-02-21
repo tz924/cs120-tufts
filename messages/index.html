@@ -8,7 +8,33 @@
       function loadMessages() {
         jsonData =
           '[{"id":1,"content":"Do you really want to hurt me?","username":"Boy"},{"id":2,"content":"Do you really want to make me cry?","username":"George"}]';
-        // Your code here......
+
+        // Get the parent div by id
+        const messagesDiv = document.getElementById("messages");
+
+        // Render each message under the parent div
+        const messages = JSON.parse(jsonData);
+        messages.forEach((message) => {
+          const messageDiv = document.createElement("div");
+          messageDiv.classList.add("message");
+
+          // Extract content from message object and render it
+          const contentEl = document.createElement("span");
+          contentEl.classList.add("message__content");
+          const content = document.createTextNode(`${message.content}`);
+          contentEl.appendChild(content);
+
+          // Extract username from message object and render it
+          const usernameEl = document.createElement("span");
+          usernameEl.classList.add("message__username");
+          const username = document.createTextNode(` ${message.username}`);
+          usernameEl.appendChild(username);
+
+          // Render message
+          messageDiv.appendChild(contentEl);
+          messageDiv.appendChild(usernameEl);
+          messagesDiv.appendChild(messageDiv);
+        });
       }
     </script>
   </head>
