@@ -1,0 +1,11 @@
+body {
+  text-align: center;
+}
+
+#lyrics {
+  display: block;
+  margin: 1rem auto;
+  min-height: 2rem;
+  max-width: 20%;
+  background-color: yellow;
+}
