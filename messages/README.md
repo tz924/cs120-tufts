@@ -1,4 +1,4 @@
-# Lab 5 Responsive Design
+# Lab 7 Message Part 1
 
 1. Identify what aspects of the work have been correctly implemented and what have not.
 
