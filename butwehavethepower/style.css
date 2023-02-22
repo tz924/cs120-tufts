@@ -1,11 +1,60 @@
+:root {
+  --simpson-blue: #2f64d6;
+  --simpson-yellow: #f8db27;
+  --simpson-brown: #9c5b01;
+  --simpson-white: #fff;
+  --simpson-pink: #ff81c1;
+  font-family: 'Rock Salt', cursive;
+}
+
+html,
+body {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  margin: 0;
+}
+
 body {
   text-align: center;
+  background: repeating-linear-gradient(45deg,
+      var(--simpson-yellow),
+      var(--simpson-yellow) 2rem,
+      var(--simpson-white) 2rem,
+      var(--simpson-white) 4rem);
+  color: var(--simpson-brown);
+}
+
+#butwehavethepower {
+  min-width: 640px;
+  width: 66%;
+  max-width: 1000px;
+  border-radius: 1rem;
+}
+
+#title {
+  font-size: 3.5rem;
 }
 
 #lyrics {
-  display: block;
   margin: 1rem auto;
-  min-height: 2rem;
-  max-width: 20%;
-  background-color: yellow;
+  font-size: 2rem;
+  color: var(--simpson-blue);
+}
+
+@media screen and (max-width: 600px) {
+  #title {
+    font-size: 2rem;
+  }
+
+  #butwehavethepower {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #lyrics {
+    font-size: 1.5rem;
+  }
 }
