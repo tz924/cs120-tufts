@@ -10,4 +10,4 @@
 
 3. Say approximately how many hours you have spent completing the lab.
 
-   1 hour.
+   1 hour. 30 minutes for styling since I don't see it in the next lab.

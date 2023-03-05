@@ -4,6 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <title>Messages</title>
+    <link rel="stylesheet" type="text/css" href="./style.css" />
     <script>
       function loadMessages() {
         jsonData =
@@ -13,27 +14,14 @@
         const messagesDiv = document.getElementById("messages");
 
         // Render each message under the parent div
-        const messages = JSON.parse(jsonData);
-        messages.forEach((message) => {
-          const messageDiv = document.createElement("div");
-          messageDiv.classList.add("message");
-
-          // Extract content from message object and render it
-          const contentEl = document.createElement("span");
-          contentEl.classList.add("message__content");
-          const content = document.createTextNode(`${message.content}`);
-          contentEl.appendChild(content);
-
-          // Extract username from message object and render it
-          const usernameEl = document.createElement("span");
-          usernameEl.classList.add("message__username");
-          const username = document.createTextNode(` ${message.username}`);
-          usernameEl.appendChild(username);
-
-          // Render message
-          messageDiv.appendChild(contentEl);
-          messageDiv.appendChild(usernameEl);
-          messagesDiv.appendChild(messageDiv);
+        const messages = JSON.parse(jsonData).forEach((message) => {
+          messagesDiv.innerHTML += `
+          <div class="message">
+            <p class="message__content">
+              ${message.content}
+              <span class="message__username">${message.username}</span>
+            </p>
+          </div>`;
         });
       }
     </script>
