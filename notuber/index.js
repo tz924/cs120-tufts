@@ -1,17 +1,20 @@
 let map;
 
+const SOUTH_STATION = { lat: 42.352271, lng: -71.055242 };
+const ICON_BASE = "./";
+
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
-    center: new google.maps.LatLng(42.352271, -71.055242),
+    center: new google.maps.LatLng(SOUTH_STATION.lat, SOUTH_STATION.lng),
     zoom: 14,
   });
 
-  const iconBase = "./";
   const icons = {
     car: {
-      icon: iconBase + "car.png",
+      icon: ICON_BASE + "car.png",
     },
   };
+
   const features = [
     {
       title: "mXfkjrFw",
@@ -46,13 +49,16 @@ function initMap() {
   ];
 
   // Create markers.
-  for (let i = 0; i < features.length; i++) {
-    const marker = new google.maps.Marker({
-      position: features[i].position,
-      icon: icons[features[i].type].icon,
-      map: map,
-    });
-  }
+  const markers = features.map(
+    (feature) =>
+      new google.maps.Marker({
+        position: feature.position,
+        icon: icons[feature.type].icon,
+        map: map,
+      })
+  );
+
+  console.log(markers);
 }
 
 window.initMap = initMap;
