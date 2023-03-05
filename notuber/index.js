@@ -57,8 +57,6 @@ function initMap() {
         map: map,
       })
   );
-
-  console.log(markers);
 }
 
 window.initMap = initMap;
