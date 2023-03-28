@@ -9,12 +9,20 @@ const ICONS = {
   cat: {
     icon: ICON_BASE + "cat.png",
   },
+  food: {
+    icon: ICON_BASE + "food.png",
+  },
 };
 
 const DEFAULT_CENTER = { lat: 42.352271, lng: -71.055242 };
+const MILE = 1609.344;
 
 function toMiles(meters) {
-  return meters * 0.000621371192;
+  return (meters * 0.000621371192).toFixed(2);
+}
+
+function toKilometers(miles) {
+  return (miles * 1.609344).toFixed(2);
 }
 
 function toQueryString(params) {
@@ -69,6 +77,7 @@ function initMap() {
     center: new google.maps.LatLng(DEFAULT_CENTER.lat, DEFAULT_CENTER.lng),
     zoom: 14,
   });
+
   infoWindow = new google.maps.InfoWindow();
 
   if (navigator.geolocation) {
@@ -79,11 +88,45 @@ function initMap() {
           lng: coords.longitude,
         };
 
+        // EC: Find nearby restaurants
+        const request = {
+          location: currentPosition,
+          radius: MILE,
+          type: ["restaurant"],
+        };
+
+        const service = new google.maps.places.PlacesService(map);
+
+        service.nearbySearch(request, (results, status) => {
+          if (status === google.maps.places.PlacesServiceStatus.OK) {
+            results.forEach((restaurant) => {
+              const marker = new google.maps.Marker({
+                position: restaurant.geometry.location,
+                icon: ICONS["food"].icon,
+                map: map,
+              });
+
+              // EC: Show restaurant info
+              marker.addListener("click", () => {
+                infoWindow.setContent(
+                  `<div>
+                    <h3>${restaurant.name}</h3>
+                    <p>${restaurant.vicinity}</p>
+                  </div>`
+                );
+                infoWindow.open({ anchor: marker, map });
+              });
+            });
+          }
+        });
+
+        // EC: Show my location
         map.setCenter(currentPosition);
-        new google.maps.Marker({
+        const myMarker = new google.maps.Marker({
           position: currentPosition,
           icon: ICONS["cat"].icon,
           map: map,
+          zIndex: 999,
         });
 
         sendRequest("POST", API_URL, {
@@ -92,8 +135,6 @@ function initMap() {
           lng: currentPosition.lng,
         })
           .then((responseData) => {
-            console.log(responseData);
-
             // Show cars
             const cars = responseData
               .map(({ username, lat, lng }) => {
@@ -107,12 +148,10 @@ function initMap() {
                   title: username,
                   position: carPosition,
                   type: "car",
-                  distance: toMiles(distance).toFixed(2),
+                  distance: toMiles(distance),
                 };
               })
               .sort((a, b) => a.distance - b.distance);
-
-            console.log(cars);
 
             const markers = cars.map((car) => {
               const marker = new google.maps.Marker({
@@ -121,15 +160,21 @@ function initMap() {
                 map: map,
               });
 
+              const kilometers = toKilometers(car.distance);
+
+              // EC: Show car info
               marker.addListener("click", () => {
                 infoWindow.setContent(
                   `<div>
-                    <h3>${car.title}</h3>
-                    <p>Distance: ${car.distance} miles away</p>
+                    <h3>Vehicle ${car.title}</h3>
+                    <p>Distance: ${car.distance} miles (${kilometers} kms) away</p>
                   </div>`
                 );
                 infoWindow.open({ anchor: marker, map });
               });
+
+              marker.title = car.title;
+              marker.distance = car.distance;
 
               return marker;
             });
@@ -143,9 +188,20 @@ function initMap() {
               strokeWeight: 2,
             });
             line.setMap(map);
+
+            // EC: Show both miles and kilometers for accessibility
+            myMarker.addListener("click", () => {
+              infoWindow.setContent(
+                `<div>
+                  <h3>Closest vehicle: ${closestMarker.title}</h3>
+                  <p>Distance: ${closestMarker.distance} miles away</p>
+                </div>`
+              );
+              infoWindow.open({ anchor: myMarker, map });
+            });
           })
           .catch((err) => {
-            console.log(err);
+            alert(err);
           });
       },
       (err) => {
