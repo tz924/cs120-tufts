@@ -1,4 +1,4 @@
-const API_URL = "https://jordan-marsh.herokuapp.com/rides";
+const API_URL = "http://localhost:5001/rides";
 const API_USERNAME = "jLttbNzY";
 
 const ICON_BASE = "./assets/icons/";
