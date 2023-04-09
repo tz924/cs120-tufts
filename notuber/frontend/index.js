@@ -264,10 +264,11 @@ map.on("load", async () => {
       // Copy coordinates array.
       const coordinates = e.features[0].geometry.coordinates.slice();
       const { title, distance } = closestVehicle.properties;
-      const description = `<div>
+      const description = `<form id="requestForm">
         <h3>Closest vehicle: ${title}</h3>
         <p>Distance: ${distance} miles away</p>
-      </div>`;
+        <button type="submit">Request Ride</button>
+      </form>`;
 
       popup.setLngLat(coordinates).setHTML(description).addTo(map);
     });
@@ -286,6 +287,14 @@ map.on("load", async () => {
   } catch (err) {
     handleLocationError(true, popup, map.getCenter(), err.message);
   }
+});
+
+$(document).on("submit", "#requestForm", async (e) => {
+  e.preventDefault();
+  console.log("request ride");
+  // TODO: Get Passenger data
+  // TODO: Get Vehicle data
+  // TODO: Send request to server
 });
 
 /* Helper functions ***********************************************************/
