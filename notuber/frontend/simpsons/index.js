@@ -15,8 +15,9 @@ const ICONS = {
     url: ICON_BASE + "home.png",
     icon_size: 1,
   },
-  food: {
-    url: ICON_BASE + "food.png",
+  school: {
+    url: ICON_BASE + "school.png",
+    icon_size: 1,
   },
 };
 const SIMPSONS_COLORS = {
@@ -31,6 +32,7 @@ const LINE_COLOR = SIMPSONS_COLORS.blue;
 const HOUSE_COLOR = SIMPSONS_COLORS.house;
 
 const HOME = { lat: 44.046204, lng: -123.023346 };
+const SCHOOL = { lat: 42.408679, lng: -71.118283 };
 const MILE = 1609.344;
 
 // The 'building' layer in the Mapbox Streets vector tileset contains building
@@ -41,7 +43,7 @@ const BUILDING_LAYER = {
   "source-layer": "building",
   filter: ["==", "extrude", "true"],
   type: "fill-extrusion",
-  minzoom: 10,
+  minzoom: 8,
   paint: {
     "fill-extrusion-color": HOUSE_COLOR,
 
@@ -129,6 +131,35 @@ map.on("load", async () => {
       layout: {
         "icon-image": "home",
         "icon-size": ICONS.springfield.icon_size,
+      },
+    });
+  });
+
+  await map.loadImage(ICONS.school.url, (error, image) => {
+    if (error) throw error;
+
+    // Add the image to the map style.
+    map.addImage("school", image);
+
+    map.addSource(
+      "school",
+      toPointsGeoJson([
+        {
+          properties: {
+            title: "Tufts University",
+          },
+          position: toLngLat(SCHOOL),
+        },
+      ])
+    );
+
+    map.addLayer({
+      id: "school",
+      type: "symbol",
+      source: "school",
+      layout: {
+        "icon-image": "school",
+        "icon-size": ICONS.school.icon_size,
       },
     });
   });
@@ -278,6 +309,18 @@ map.on("load", async () => {
       const description = `<div>
         <h1>${title}</h1>
         <p>Home Sweet Home</p>
+      </div>`;
+
+      popup.setLngLat(coordinates).setHTML(description).addTo(map);
+    });
+
+    handleClick("school", (e) => {
+      // Copy coordinates array.
+      const coordinates = e.features[0].geometry.coordinates.slice();
+      const { title } = e.features[0].properties;
+      const description = `<div>
+        <h1>${title}</h1>
+        <a href="/">PORTAL</a>
       </div>`;
 
       popup.setLngLat(coordinates).setHTML(description).addTo(map);

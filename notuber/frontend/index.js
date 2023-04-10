@@ -9,9 +9,6 @@ const ICONS = {
   cat: {
     icon: ICON_BASE + "cat.png",
   },
-  // food: {
-  //   icon: ICON_BASE + "food.png",
-  // },
   simpsons: {
     icon: ICON_BASE + "simpsons.png",
   },
@@ -109,7 +106,7 @@ function initMap() {
             `<div class="simpsons">
               <h2>Springfield, OR</h2>
               <p>Home Sweet Home</p>
-              <a href="/simpsons">A MYSTERIOUS PORTAL</a>
+              <a href="/simpsons">DIMENSIONAL RIFT</a>
             </div>`
           );
           infoWindow.open({ anchor: portalMarker, map });
