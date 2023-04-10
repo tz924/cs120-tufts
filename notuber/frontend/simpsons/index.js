@@ -1,5 +1,6 @@
 const API_URL = "https://unicorn-cat.herokuapp.com/rides";
 const API_USERNAME = "jLttbNzY";
+const REQUEST_URL = API_URL + "/request";
 
 const ICON_BASE = "../assets/icons/";
 const ICONS = {
@@ -115,7 +116,7 @@ map.on("load", async () => {
       toPointsGeoJson([
         {
           properties: {
-            title: "Springfield, Oregon",
+            title: "Springfield, OR",
           },
           position: toLngLat(HOME),
         },
@@ -263,6 +264,10 @@ map.on("load", async () => {
       const description = `<form id="requestForm">
         <h3>Closest vehicle: ${title}</h3>
         <p>Distance: ${distance} miles away</p>
+        <input type="text" name="username" placeholder="username" />
+        <input type="hidden" name="lat" value="${coordinates[1]}" />
+        <input type="hidden" name="lng" value="${coordinates[0]}" />
+        <input type="hidden" name="vehicle" value="${title}" />
         <button type="submit">Request Ride</button>
       </form>`;
 
@@ -287,10 +292,33 @@ map.on("load", async () => {
 
 $(document).on("submit", "#requestForm", async (e) => {
   e.preventDefault();
-  console.log("request ride");
-  // TODO: Get Passenger data
-  // TODO: Get Vehicle data
-  // TODO: Send request to server
+  // Get Passenger data
+  const { username, lat, lng, vehicle } = e.target;
+
+  // Usernames can't be empty
+  if (!username.value) {
+    alert("Please enter a username");
+    return;
+  }
+
+  try {
+    // Send request to server
+    const response = await sendRequest("POST", REQUEST_URL, {
+      username: username.value,
+      lat: lat.value,
+      lng: lng.value,
+      vehicle: vehicle.value,
+    });
+
+    // Show response
+    alert("Ride Requested!");
+  } catch (err) {
+    alert("Error requesting ride");
+    console.error(err);
+  }
+
+  // Close popup
+  popup.remove();
 });
 
 /* Helper functions ***********************************************************/
