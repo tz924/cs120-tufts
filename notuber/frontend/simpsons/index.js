@@ -1,15 +1,15 @@
 const API_URL = "https://unicorn-cat.herokuapp.com/rides";
 const API_USERNAME = "jLttbNzY";
 
-const ICON_BASE = "./assets/icons/";
+const ICON_BASE = "../assets/icons/";
 const ICONS = {
   simpsons: {
     url: ICON_BASE + "simpsons.png",
-    icon_size: 0.5,
+    icon_size: 1,
   },
   vehicle: {
     url: ICON_BASE + "sedan.png",
-    icon_size: 0.25,
+    icon_size: 1,
   },
   springfield: {
     url: ICON_BASE + "home.png",
