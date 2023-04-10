@@ -136,38 +136,6 @@ function initMap() {
           infoWindow.open({ anchor: simpsonsMarker, map });
         });
 
-        // EC: Find nearby restaurants
-        // const request = {
-        //   location: currentPosition,
-        //   radius: MILE,
-        //   type: ["restaurant"],
-        // };
-
-        // const service = new google.maps.places.PlacesService(map);
-
-        // service.nearbySearch(request, (results, status) => {
-        //   if (status === google.maps.places.PlacesServiceStatus.OK) {
-        //     results.forEach((restaurant) => {
-        //       const marker = new google.maps.Marker({
-        //         position: restaurant.geometry.location,
-        //         icon: ICONS["food"].icon,
-        //         map: map,
-        //       });
-
-        //       // EC: Show restaurant info
-        //       marker.addListener("click", () => {
-        //         infoWindow.setContent(
-        //           `<div>
-        //             <h3>${restaurant.name}</h3>
-        //             <p>${restaurant.vicinity}</p>
-        //           </div>`
-        //         );
-        //         infoWindow.open({ anchor: marker, map });
-        //       });
-        //     });
-        //   }
-        // });
-
         // EC: Show my location
         map.setCenter(currentPosition);
         const myMarker = new google.maps.Marker({

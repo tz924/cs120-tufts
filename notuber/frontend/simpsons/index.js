@@ -1,6 +1,5 @@
 const API_URL = "https://unicorn-cat.herokuapp.com/rides";
 const API_USERNAME = "jLttbNzY";
-const REQUEST_URL = API_URL + "/request";
 
 const ICON_BASE = "../assets/icons/";
 const ICONS = {
@@ -143,17 +142,15 @@ map.on("load", async () => {
   try {
     // FEATURE: Show my location
     const position = await getCurrentPosition();
-    const myPosition = toLngLat({
-      lat: position.coords.latitude,
-      lng: position.coords.longitude,
-    });
+    const { latitude: myLat, longitude: myLng } = position.coords;
+    const myPosition = toLngLat({ lat: myLat, lng: myLng });
     map.setCenter(myPosition);
 
     // FEATURE: Show closest vehicle
     const ridesData = await sendRequest("POST", API_URL, {
       username: API_USERNAME,
-      lat: myPosition.lat,
-      lng: myPosition.lng,
+      lat: myLat,
+      lng: myLng,
     });
 
     // Show vehicles
@@ -303,11 +300,10 @@ $(document).on("submit", "#requestForm", async (e) => {
 
   try {
     // Send request to server
-    const response = await sendRequest("POST", REQUEST_URL, {
+    const response = await sendRequest("POST", API_URL, {
       username: username.value,
       lat: lat.value,
       lng: lng.value,
-      vehicle: vehicle.value,
     });
 
     // Show response
