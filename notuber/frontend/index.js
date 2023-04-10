@@ -1,13 +1,10 @@
-const API_URL = "http://localhost:5001/rides";
+const API_URL = "https://unicorn-cat.herokuapp.com/rides";
 const API_USERNAME = "jLttbNzY";
 
 const ICON_BASE = "./assets/icons/";
 const ICONS = {
   simpsons: {
     url: ICON_BASE + "simpsons.png",
-    width: `100px`,
-    height: `100px`,
-    description: "The Simpsons",
     icon_size: 0.5,
   },
   vehicle: {
@@ -28,7 +25,7 @@ const SIMPSONS_COLORS = {
   brown: "#9c5b01",
   white: "#fff",
   pink: "#ff81c1",
-  house: "#c692a3",
+  house: "#ffcc99",
 };
 const LINE_COLOR = SIMPSONS_COLORS.blue;
 const HOUSE_COLOR = SIMPSONS_COLORS.house;
@@ -94,7 +91,7 @@ const map = new mapboxgl.Map({
 
 const popup = new mapboxgl.Popup();
 
-map.on("style.load", () => {
+map.on("style.load", async () => {
   // Insert the layer beneath any symbol layer.
   const layers = map.getStyle().layers;
   const labelLayerId = layers.find(
@@ -107,7 +104,7 @@ map.on("style.load", () => {
 // Main Entry Point
 map.on("load", async () => {
   // Home Sweet Home
-  map.loadImage(ICONS.springfield.url, (error, image) => {
+  await map.loadImage(ICONS.springfield.url, (error, image) => {
     if (error) throw error;
 
     // Add the image to the map style.
@@ -151,36 +148,6 @@ map.on("load", async () => {
     });
     map.setCenter(myPosition);
 
-    map.loadImage(ICONS.simpsons.url, (error, image) => {
-      if (error) throw error;
-
-      // Add the image to the map style.
-      map.addImage("simpsons", image);
-
-      map.addSource(
-        "myLocation",
-        toPointsGeoJson([
-          {
-            properties: {
-              title: ICONS.simpsons.description,
-            },
-            position: myPosition,
-          },
-        ])
-      );
-
-      map.addLayer({
-        id: "myLocation",
-        type: "symbol",
-        source: "myLocation",
-        layout: {
-          "icon-image": "simpsons",
-          "icon-allow-overlap": true,
-          "icon-size": ICONS.simpsons.icon_size,
-        },
-      });
-    });
-
     // FEATURE: Show closest vehicle
     const ridesData = await sendRequest("POST", API_URL, {
       username: API_USERNAME,
@@ -204,6 +171,35 @@ map.on("load", async () => {
         };
       })
       .sort((a, b) => a.properties.distance - b.properties.distance);
+
+    // Initial Prep Done
+    map.loadImage(ICONS.simpsons.url, (error, image) => {
+      if (error) throw error;
+
+      // Add the image to the map style.
+      map.addImage("simpsons", image);
+      map.addSource(
+        "myLocation",
+        toPointsGeoJson([
+          {
+            properties: {
+              title: "You are here",
+            },
+            position: myPosition,
+          },
+        ])
+      );
+      map.addLayer({
+        id: "myLocation",
+        type: "symbol",
+        source: "myLocation",
+        layout: {
+          "icon-image": "simpsons",
+          "icon-allow-overlap": true,
+          "icon-size": ICONS.simpsons.icon_size,
+        },
+      });
+    });
 
     map.loadImage(ICONS.vehicle.url, (error, image) => {
       if (error) throw error;
@@ -301,6 +297,7 @@ $(document).on("submit", "#requestForm", async (e) => {
 function computeDistanceBetween(to, from, options = {}) {
   return turf.distance(to, from, options).toFixed(2);
 }
+
 function getCurrentPosition(options = {}) {
   return new Promise((resolve, reject) =>
     navigator.geolocation.getCurrentPosition(resolve, reject, options)
@@ -410,151 +407,3 @@ function handleLocationError(browserHasGeolocation, popup, pos, msg) {
     )
     .addTo(map);
 }
-
-// async function initMap() {
-//   const { Map, InfoWindow } = await google.maps.importLibrary("maps");
-//   const { Marker } = await google.maps.importLibrary("marker");
-
-//   map = new Map(document.getElementById("map"), {
-//     center: new google.maps.LatLng(HOME.lat, HOME.lng),
-//     zoom: 14,
-//   });
-
-//   infoWindow = new InfoWindow();
-
-//   if (navigator.geolocation) {
-//     navigator.geolocation.getCurrentPosition(
-//       async ({ coords }) => {
-//         myPosition = {
-//           lat: coords.latitude,
-//           lng: coords.longitude,
-//         };
-
-//         // EC: Find nearby restaurants
-//         const request = {
-//           location: myPosition,
-//           radius: MILE,
-//           type: ["restaurant"],
-//         };
-
-//         const service = new google.maps.places.PlacesService(map);
-
-//         service.nearbySearch(request, (results, status) => {
-//           if (status === google.maps.places.PlacesServiceStatus.OK) {
-//             results.forEach((restaurant) => {
-//               const marker = new Marker({
-//                 position: restaurant.geometry.location,
-//                 icon: ICONS["food"].icon,
-//                 map: map,
-//               });
-
-//               // EC: Show restaurant info
-//               marker.addListener("click", () => {
-//                 infoWindow.setContent(
-//                   `<div>
-//                     <h3>${restaurant.name}</h3>
-//                     <p>${restaurant.vicinity}</p>
-//                   </div>`
-//                 );
-//                 infoWindow.open({ anchor: marker, map });
-//               });
-//             });
-//           }
-//         });
-
-//         // EC: Show my location
-//         map.setCenter(myPosition);
-//         const myMarker = new Marker({
-//           position: myPosition,
-//           icon: ICONS["cat"].icon,
-//           map: map,
-//           zIndex: 999,
-//         });
-
-//         // EC: Show nearby cars
-//         try {
-//           const ridesData = await sendRequest("POST", API_URL, {
-//             username: API_USERNAME,
-//             lat: myPosition.lat,
-//             lng: myPosition.lng,
-//           });
-
-//           // Show cars
-//           const cars = ridesData
-//             .map(({ username, lat, lng }) => {
-//               const vehiclePosition = new google.maps.LatLng(lat, lng);
-//               const distance =
-//                 google.maps.geometry.spherical.computeDistanceBetween(
-//                   myPosition,
-//                   vehiclePosition
-//                 );
-//               return {
-//                 title: username,
-//                 position: vehiclePosition,
-//                 type: "car",
-//                 distance: toMiles(distance),
-//               };
-//             })
-//             .sort((a, b) => a.distance - b.distance);
-
-//           const markers = cars.map((car) => {
-//             const marker = new Marker({
-//               position: car.position,
-//               icon: ICONS["car"].icon,
-//               map: map,
-//             });
-
-//             const kilometers = toKilometers(car.distance);
-
-//             // EC: Show car info
-//             marker.addListener("click", () => {
-//               infoWindow.setContent(
-//                 `<div>
-//                     <h3>Vehicle ${car.title}</h3>
-//                     <p>Distance: ${car.distance} miles (${kilometers} kms) away</p>
-//                   </div>`
-//               );
-//               infoWindow.open({ anchor: marker, map });
-//             });
-
-//             marker.title = car.title;
-//             marker.distance = car.distance;
-
-//             return marker;
-//           });
-
-//           const closestVehicle = markers[0];
-//           const line = new google.maps.Polyline({
-//             path: [myPosition, closestVehicle.position],
-//             geodesic: true,
-//             strokeColor: "#FF0000",
-//             strokeOpacity: 1.0,
-//             strokeWeight: 2,
-//           });
-//           line.setMap(map);
-
-//           // EC: Show both miles and kilometers for accessibility
-//           myMarker.addListener("click", () => {
-//             infoWindow.setContent(
-//               `<div>
-//                   <h3>Closest vehicle: ${closestVehicle.title}</h3>
-//                   <p>Distance: ${closestVehicle.distance} miles away</p>
-//                 </div>`
-//             );
-//             infoWindow.open({ anchor: myMarker, map });
-//           });
-//         } catch (err) {
-//           alert(err);
-//         }
-//       },
-//       async (err) => {
-//         handleLocationError(true, infoWindow, map.getCenter(), err.message);
-//       }
-//     );
-//   } else {
-//     // Browser doesn't support Geolocation
-//     handleLocationError(false, infoWindow, map.getCenter());
-//   }
-// }
-
-// window.initMap = initMap;
