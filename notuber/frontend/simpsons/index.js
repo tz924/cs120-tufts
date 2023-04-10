@@ -261,7 +261,7 @@ map.on("load", async () => {
       const description = `<form id="requestForm">
         <h3>Closest vehicle: ${title}</h3>
         <p>Distance: ${distance} miles away</p>
-        <input type="text" name="username" placeholder="username" />
+        <input type="text" name="username" placeholder="${API_USERNAME}" required/>
         <input type="hidden" name="lat" value="${coordinates[1]}" />
         <input type="hidden" name="lng" value="${coordinates[0]}" />
         <input type="hidden" name="vehicle" value="${title}" />
