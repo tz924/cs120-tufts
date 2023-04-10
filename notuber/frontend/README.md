@@ -2,7 +2,9 @@
 
 1. Identify what aspects of the work have been correctly implemented and what have not.
 
-   Implemented all required features and ECs.
+   Implemented all required features.
+   Alternative version in simpsons.
+   Zoom out for portal.
 
 2. Identify anyone with whom you have collaborated or discussed the lab.
 
@@ -10,7 +12,7 @@
 
 3. Say approximately how many hours you have spent completing the lab.
 
-   4 + 2 hours. (Core & EC)
+   4 & 10+ hours. (Core & EC)
 
 ## Reference
 
