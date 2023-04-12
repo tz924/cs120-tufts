@@ -106,7 +106,7 @@ function initMap() {
             `<div class="simpsons">
               <h2>Springfield, OR</h2>
               <p>Home Sweet Home</p>
-              <a href="/simpsons">DIMENSIONAL RIFT</a>
+              <a href="/simpsons">DIMENSION RIFT</a>
             </div>`
           );
           infoWindow.open({ anchor: portalMarker, map });
