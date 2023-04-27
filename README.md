@@ -10,4 +10,4 @@
 
 3. Say approximately how many hours you have spent completing the lab.
 
-   5 hours
+   7 hours, mostly on writing and make the webpage
