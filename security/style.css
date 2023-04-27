@@ -1,0 +1,37 @@
+/*
+ * Always set the map height explicitly to define the size of the div element
+ * that contains the map.
+ */
+#map {
+  height: 100%;
+}
+
+/*
+ * Optional: Makes the sample page fill the window.
+ */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.marker {
+  display: block;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0;
+}
+
+.my-marker {
+  z-index: 999;
+}
+
+#requestForm {
+  padding: 1rem;
+}
+
+#requestForm button {
+  margin-top: 1rem;
+}
