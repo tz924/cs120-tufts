@@ -1,673 +1,915 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Report</title><style>
-/* cspell:disable-file */
-/* webkit printing magic: print all background colors */
-html {
-	-webkit-print-color-adjust: exact;
-}
-* {
-	box-sizing: border-box;
-	-webkit-print-color-adjust: exact;
-}
-
-html,
-body {
-	margin: 0;
-	padding: 0;
-}
-@media only screen {
-	body {
-		margin: 2em auto;
-		max-width: 900px;
-		color: rgb(55, 53, 47);
-	}
-}
-
-body {
-	line-height: 1.5;
-	white-space: pre-wrap;
-}
-
-a,
-a.visited {
-	color: inherit;
-	text-decoration: underline;
-}
-
-.pdf-relative-link-path {
-	font-size: 80%;
-	color: #444;
-}
-
-h1,
-h2,
-h3 {
-	letter-spacing: -0.01em;
-	line-height: 1.2;
-	font-weight: 600;
-	margin-bottom: 0;
-}
-
-.page-title {
-	font-size: 2.5rem;
-	font-weight: 700;
-	margin-top: 0;
-	margin-bottom: 0.75em;
-}
-
-h1 {
-	font-size: 1.875rem;
-	margin-top: 1.875rem;
-}
-
-h2 {
-	font-size: 1.5rem;
-	margin-top: 1.5rem;
-}
-
-h3 {
-	font-size: 1.25rem;
-	margin-top: 1.25rem;
-}
-
-.source {
-	border: 1px solid #ddd;
-	border-radius: 3px;
-	padding: 1.5em;
-	word-break: break-all;
-}
-
-.callout {
-	border-radius: 3px;
-	padding: 1rem;
-}
-
-figure {
-	margin: 1.25em 0;
-	page-break-inside: avoid;
-}
-
-figcaption {
-	opacity: 0.5;
-	font-size: 85%;
-	margin-top: 0.5em;
-}
-
-mark {
-	background-color: transparent;
-}
-
-.indented {
-	padding-left: 1.5em;
-}
-
-hr {
-	background: transparent;
-	display: block;
-	width: 100%;
-	height: 1px;
-	visibility: visible;
-	border: none;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
-}
-
-img {
-	max-width: 100%;
-}
-
-@media only print {
-	img {
-		max-height: 100vh;
-		object-fit: contain;
-	}
-}
-
-@page {
-	margin: 1in;
-}
-
-.collection-content {
-	font-size: 0.875rem;
-}
-
-.column-list {
-	display: flex;
-	justify-content: space-between;
-}
-
-.column {
-	padding: 0 1em;
-}
-
-.column:first-child {
-	padding-left: 0;
-}
-
-.column:last-child {
-	padding-right: 0;
-}
-
-.table_of_contents-item {
-	display: block;
-	font-size: 0.875rem;
-	line-height: 1.3;
-	padding: 0.125rem;
-}
-
-.table_of_contents-indent-1 {
-	margin-left: 1.5rem;
-}
-
-.table_of_contents-indent-2 {
-	margin-left: 3rem;
-}
-
-.table_of_contents-indent-3 {
-	margin-left: 4.5rem;
-}
-
-.table_of_contents-link {
-	text-decoration: none;
-	opacity: 0.7;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
-}
-
-table,
-th,
-td {
-	border: 1px solid rgba(55, 53, 47, 0.09);
-	border-collapse: collapse;
-}
-
-table {
-	border-left: none;
-	border-right: none;
-}
-
-th,
-td {
-	font-weight: normal;
-	padding: 0.25em 0.5em;
-	line-height: 1.5;
-	min-height: 1.5em;
-	text-align: left;
-}
-
-th {
-	color: rgba(55, 53, 47, 0.6);
-}
-
-ol,
-ul {
-	margin: 0;
-	margin-block-start: 0.6em;
-	margin-block-end: 0.6em;
-}
-
-li > ol:first-child,
-li > ul:first-child {
-	margin-block-start: 0.6em;
-}
-
-ul > li {
-	list-style: disc;
-}
-
-ul.to-do-list {
-	padding-inline-start: 0;
-}
-
-ul.to-do-list > li {
-	list-style: none;
-}
-
-.to-do-children-checked {
-	text-decoration: line-through;
-	opacity: 0.375;
-}
-
-ul.toggle > li {
-	list-style: none;
-}
-
-ul {
-	padding-inline-start: 1.7em;
-}
-
-ul > li {
-	padding-left: 0.1em;
-}
-
-ol {
-	padding-inline-start: 1.6em;
-}
-
-ol > li {
-	padding-left: 0.2em;
-}
-
-.mono ol {
-	padding-inline-start: 2em;
-}
-
-.mono ol > li {
-	text-indent: -0.4em;
-}
-
-.toggle {
-	padding-inline-start: 0em;
-	list-style-type: none;
-}
-
-/* Indent toggle children */
-.toggle > li > details {
-	padding-left: 1.7em;
-}
-
-.toggle > li > details > summary {
-	margin-left: -1.1em;
-}
-
-.selected-value {
-	display: inline-block;
-	padding: 0 0.5em;
-	background: rgba(206, 205, 202, 0.5);
-	border-radius: 3px;
-	margin-right: 0.5em;
-	margin-top: 0.3em;
-	margin-bottom: 0.3em;
-	white-space: nowrap;
-}
-
-.collection-title {
-	display: inline-block;
-	margin-right: 1em;
-}
-
-.simple-table {
-	margin-top: 1em;
-	font-size: 0.875rem;
-	empty-cells: show;
-}
-.simple-table td {
-	height: 29px;
-	min-width: 120px;
-}
-
-.simple-table th {
-	height: 29px;
-	min-width: 120px;
-}
-
-.simple-table-header-color {
-	background: rgb(247, 246, 243);
-	color: black;
-}
-.simple-table-header {
-	font-weight: 500;
-}
-
-time {
-	opacity: 0.5;
-}
-
-.icon {
-	display: inline-block;
-	max-width: 1.2em;
-	max-height: 1.2em;
-	text-decoration: none;
-	vertical-align: text-bottom;
-	margin-right: 0.5em;
-}
-
-img.icon {
-	border-radius: 3px;
-}
-
-.user-icon {
-	width: 1.5em;
-	height: 1.5em;
-	border-radius: 100%;
-	margin-right: 0.5rem;
-}
-
-.user-icon-inner {
-	font-size: 0.8em;
-}
-
-.text-icon {
-	border: 1px solid #000;
-	text-align: center;
-}
-
-.page-cover-image {
-	display: block;
-	object-fit: cover;
-	width: 100%;
-	max-height: 30vh;
-}
-
-.page-header-icon {
-	font-size: 3rem;
-	margin-bottom: 1rem;
-}
-
-.page-header-icon-with-cover {
-	margin-top: -0.72em;
-	margin-left: 0.07em;
-}
-
-.page-header-icon img {
-	border-radius: 3px;
-}
-
-.link-to-page {
-	margin: 1em 0;
-	padding: 0;
-	border: none;
-	font-weight: 500;
-}
-
-p > .user {
-	opacity: 0.5;
-}
-
-td > .user,
-td > time {
-	white-space: nowrap;
-}
-
-input[type="checkbox"] {
-	transform: scale(1.5);
-	margin-right: 0.6em;
-	vertical-align: middle;
-}
-
-p {
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
-}
-
-.image {
-	border: none;
-	margin: 1.5em 0;
-	padding: 0;
-	border-radius: 0;
-	text-align: center;
-}
-
-.code,
-code {
-	background: rgba(135, 131, 120, 0.15);
-	border-radius: 3px;
-	padding: 0.2em 0.4em;
-	border-radius: 3px;
-	font-size: 85%;
-	tab-size: 2;
-}
-
-code {
-	color: #eb5757;
-}
-
-.code {
-	padding: 1.5em 1em;
-}
-
-.code-wrap {
-	white-space: pre-wrap;
-	word-break: break-all;
-}
-
-.code > code {
-	background: none;
-	padding: 0;
-	font-size: 100%;
-	color: inherit;
-}
-
-blockquote {
-	font-size: 1.25em;
-	margin: 1em 0;
-	padding-left: 1em;
-	border-left: 3px solid rgb(55, 53, 47);
-}
-
-.bookmark {
-	text-decoration: none;
-	max-height: 8em;
-	padding: 0;
-	display: flex;
-	width: 100%;
-	align-items: stretch;
-}
-
-.bookmark-title {
-	font-size: 0.85em;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	height: 1.75em;
-	white-space: nowrap;
-}
-
-.bookmark-text {
-	display: flex;
-	flex-direction: column;
-}
-
-.bookmark-info {
-	flex: 4 1 180px;
-	padding: 12px 14px 14px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-
-.bookmark-image {
-	width: 33%;
-	flex: 1 1 180px;
-	display: block;
-	position: relative;
-	object-fit: cover;
-	border-radius: 1px;
-}
-
-.bookmark-description {
-	color: rgba(55, 53, 47, 0.6);
-	font-size: 0.75em;
-	overflow: hidden;
-	max-height: 4.5em;
-	word-break: break-word;
-}
-
-.bookmark-href {
-	font-size: 0.75em;
-	margin-top: 0.25em;
-}
-
-.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
-.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
-.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
-.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
-.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
-.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
-.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
-.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
-.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
-.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
-.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
-.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
-.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
-.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
-.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
-.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
-.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
-.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
-.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
-.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
-.highlight-default {
-	color: rgba(55, 53, 47, 1);
-}
-.highlight-gray {
-	color: rgba(120, 119, 116, 1);
-	fill: rgba(120, 119, 116, 1);
-}
-.highlight-brown {
-	color: rgba(159, 107, 83, 1);
-	fill: rgba(159, 107, 83, 1);
-}
-.highlight-orange {
-	color: rgba(217, 115, 13, 1);
-	fill: rgba(217, 115, 13, 1);
-}
-.highlight-yellow {
-	color: rgba(203, 145, 47, 1);
-	fill: rgba(203, 145, 47, 1);
-}
-.highlight-teal {
-	color: rgba(68, 131, 97, 1);
-	fill: rgba(68, 131, 97, 1);
-}
-.highlight-blue {
-	color: rgba(51, 126, 169, 1);
-	fill: rgba(51, 126, 169, 1);
-}
-.highlight-purple {
-	color: rgba(144, 101, 176, 1);
-	fill: rgba(144, 101, 176, 1);
-}
-.highlight-pink {
-	color: rgba(193, 76, 138, 1);
-	fill: rgba(193, 76, 138, 1);
-}
-.highlight-red {
-	color: rgba(212, 76, 71, 1);
-	fill: rgba(212, 76, 71, 1);
-}
-.highlight-gray_background {
-	background: rgba(241, 241, 239, 1);
-}
-.highlight-brown_background {
-	background: rgba(244, 238, 238, 1);
-}
-.highlight-orange_background {
-	background: rgba(251, 236, 221, 1);
-}
-.highlight-yellow_background {
-	background: rgba(251, 243, 219, 1);
-}
-.highlight-teal_background {
-	background: rgba(237, 243, 236, 1);
-}
-.highlight-blue_background {
-	background: rgba(231, 243, 248, 1);
-}
-.highlight-purple_background {
-	background: rgba(244, 240, 247, 0.8);
-}
-.highlight-pink_background {
-	background: rgba(249, 238, 243, 0.8);
-}
-.highlight-red_background {
-	background: rgba(253, 235, 236, 1);
-}
-.block-color-default {
-	color: inherit;
-	fill: inherit;
-}
-.block-color-gray {
-	color: rgba(120, 119, 116, 1);
-	fill: rgba(120, 119, 116, 1);
-}
-.block-color-brown {
-	color: rgba(159, 107, 83, 1);
-	fill: rgba(159, 107, 83, 1);
-}
-.block-color-orange {
-	color: rgba(217, 115, 13, 1);
-	fill: rgba(217, 115, 13, 1);
-}
-.block-color-yellow {
-	color: rgba(203, 145, 47, 1);
-	fill: rgba(203, 145, 47, 1);
-}
-.block-color-teal {
-	color: rgba(68, 131, 97, 1);
-	fill: rgba(68, 131, 97, 1);
-}
-.block-color-blue {
-	color: rgba(51, 126, 169, 1);
-	fill: rgba(51, 126, 169, 1);
-}
-.block-color-purple {
-	color: rgba(144, 101, 176, 1);
-	fill: rgba(144, 101, 176, 1);
-}
-.block-color-pink {
-	color: rgba(193, 76, 138, 1);
-	fill: rgba(193, 76, 138, 1);
-}
-.block-color-red {
-	color: rgba(212, 76, 71, 1);
-	fill: rgba(212, 76, 71, 1);
-}
-.block-color-gray_background {
-	background: rgba(241, 241, 239, 1);
-}
-.block-color-brown_background {
-	background: rgba(244, 238, 238, 1);
-}
-.block-color-orange_background {
-	background: rgba(251, 236, 221, 1);
-}
-.block-color-yellow_background {
-	background: rgba(251, 243, 219, 1);
-}
-.block-color-teal_background {
-	background: rgba(237, 243, 236, 1);
-}
-.block-color-blue_background {
-	background: rgba(231, 243, 248, 1);
-}
-.block-color-purple_background {
-	background: rgba(244, 240, 247, 0.8);
-}
-.block-color-pink_background {
-	background: rgba(249, 238, 243, 0.8);
-}
-.block-color-red_background {
-	background: rgba(253, 235, 236, 1);
-}
-.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
-.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
-.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
-.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
-.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
-.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
-.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
-.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
-.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
-.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
-
-.checkbox {
-	display: inline-flex;
-	vertical-align: text-bottom;
-	width: 16;
-	height: 16;
-	background-size: 16px;
-	margin-left: 2px;
-	margin-right: 5px;
-}
-
-.checkbox-on {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-
-.checkbox-off {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-	
-</style></head><body><article id="de91bc27-8afa-4296-9d5f-567b8ee744e6" class="page sans"><header><h1 class="page-title">Report</h1></header><div class="page-body"><h2 id="144e06be-6268-4534-8d44-f49b49d6fe96" class="">1. Introduction</h2><p id="5f730f9c-f9c6-4be9-89af-c26029979e9e" class="">As security consultants for Not Uber, an up-and-coming ride-hailing service, we are responsible for enhancing the safety and privacy of its user-centric platform. Our primary objective is to thoroughly analyze the provided source code, identify potential security and privacy vulnerabilities, and recommend effective solutions to fortify the overall security posture of the service, ensuring an optimal and secure experience for Not Uber&#x27;s growing user base.</p><h2 id="0795ea30-abd8-4f40-9bd8-a4ceb839a8a8" class="">2. Methodology</h2><p id="1eb0dc0f-0a5b-4f67-8715-3313328c6140" class="">Our penetration testing methodology for Not Uber&#x27;s ride-hailing service involves two stages: black-box and white-box testing. During black-box testing, we simulate external attacks using tools like OWASP Zed Attack Proxy (ZAP) and curl, targeting vulnerabilities such as SQL injection and XSS. In the white-box testing stage, we conduct a manual code review to identify security and privacy issues within the source code. If we uncover significant vulnerabilities, we reattempt exploitation to validate our findings. This combined approach ensures a comprehensive security assessment, providing actionable recommendations for system improvements.</p><h2 id="e4a304be-dee5-4abc-a478-f12a74070329" class="">3. Abstract of Findings</h2><p id="2e686e40-9055-489a-ab73-cfe4b87a6664" class="">Our security assessment of the &quot;Not Uber&quot; ride-hailing service has identified several security and privacy issues that require attention. The most critical vulnerabilities include potential SQL injection attacks, particularly in the <code><strong>/passenger.json</strong></code> and <code><strong>/vehicle.json</strong></code> endpoints, where user input is not properly sanitized before being used in database queries. This could allow malicious users to manipulate and access sensitive data. Another concern is the overly permissive Cross-Origin Resource Sharing (CORS) headers in the <code><strong>/rides</strong></code> and <code><strong>/update</strong></code> endpoints, which could lead to unauthorized cross-origin requests, exposing user data to third parties. Additionally, inadequate input validation for usernames in both the <code><strong>/rides</strong></code> and <code><strong>/update</strong></code> endpoints may result in Cross-Site Scripting (XSS) attacks or database inconsistencies. We have provided detailed descriptions of each vulnerability, along with recommended solutions, to help strengthen the security posture of the application. It is crucial to address these concerns promptly to protect the ride-hailing service and its users from potential attacks and data breaches.</p><p id="962864a2-3b6b-49a8-b887-b500d39f4f66" class="">Our security assessment of the &quot;Not Uber&quot; ride-hailing service has identified several security and privacy issues. The most critical vulnerabilities include potential SQL injection attacks due to a lack of proper input validation and sanitization, overly permissive Cross-Origin Resource Sharing (CORS) headers that could lead to unauthorized cross-origin requests, and inadequate input validation for usernames. These issues can result in data leaks, unauthorized access, and other security threats. We have provided detailed descriptions of each vulnerability, along with recommended solutions, to help strengthen the security posture of the application. It is crucial to address these concerns promptly to protect the ride-hailing service and its users from potential attacks and data breaches.</p><h2 id="ccbc1e92-ad97-4dcf-8972-114f4298b36a" class="">4. Issues Found</h2><h3 id="44da6c5c-776d-4852-830c-2228b14c44f0" class=""><details open=""><summary>4.1 Issue: SQL Injection</summary></details></h3><div class="indented"><ul id="17eb9964-f15b-4c8c-9013-e5aa8812f510" class="bulleted-list"><li style="list-style-type:disc">Location: GET <code><strong>/passenger.json</strong></code> endpoint</li></ul><ul id="e4d8724a-a808-4e5e-b74f-c4251c42a800" class="bulleted-list"><li style="list-style-type:disc">Severity: High</li></ul><ul id="cf3f58bf-f32b-444f-b40a-a38d18845898" class="bulleted-list"><li style="list-style-type:disc">Description: During the manual code review, we discovered that the application is vulnerable to SQL injection attacks. This vulnerability arises from the improper handling of the <code><strong>usernameEntry</strong></code> variable, which is directly concatenated into the SQL query string. An attacker can exploit this to execute arbitrary SQL commands, potentially compromising the database and sensitive user data.</li></ul><ul id="ec79b09b-9596-42e5-a0e6-7f65b4877747" class="bulleted-list"><li style="list-style-type:disc">Proof of vulnerability: We performed a test by sending a specially crafted request with an SQL injection payload. The application returned data that confirmed the successful execution of our injected SQL command. <ul id="d8caadeb-57be-4dd6-bb32-680f902eb558" class="bulleted-list"><li style="list-style-type:circle">Here&#x27;s a screenshot illustrating the problem:<p id="aa3a45e5-aa61-40ea-be78-34e429ec6d16" class="">Delete all rows by setting <code>username</code> to <code>admin&#x27;; DELETE FROM vehicles; SELECT * FROM vehicles WHERE &#x27;a&#x27;=&#x27;a</code></p><figure id="451cdbd0-17f9-451a-97b9-d6528a0ae35a" class="image"><a href="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled.png"><img style="width:883px" src="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled.png"/></a></figure></li></ul></li></ul><ul id="9fff2208-1ccf-495d-88c9-68706abb69ac" class="bulleted-list"><li style="list-style-type:disc">Resolution: To resolve this issue, we recommend using the <code><strong>validator</strong></code>
- module to sanitize and validate user input before incorporating it into the SQL query string. This will help prevent SQL injection attacks.<p id="497aea6c-a2d0-463b-912d-2e1f40098ca9" class="">For example, modify the code in the <code><strong>/passenger.json</strong></code><strong> </strong>endpoint:</p><pre id="ceb433d5-03bb-4d6b-9d1e-2a0a51aec818" class="code code-wrap"><code>var validator = require(&#x27;validator&#x27;);
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Report</title>
+    <style>
+      /* cspell:disable-file */
+      /* webkit printing magic: print all background colors */
+      html {
+        -webkit-print-color-adjust: exact;
+      }
+      * {
+        box-sizing: border-box;
+        -webkit-print-color-adjust: exact;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      @media only screen {
+        body {
+          margin: 2em auto;
+          max-width: 900px;
+          color: rgb(55, 53, 47);
+        }
+      }
+
+      body {
+        line-height: 1.5;
+        white-space: pre-wrap;
+      }
+
+      a,
+      a.visited {
+        color: inherit;
+        text-decoration: underline;
+      }
+
+      .pdf-relative-link-path {
+        font-size: 80%;
+        color: #444;
+      }
+
+      h1,
+      h2,
+      h3 {
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        font-weight: 600;
+        margin-bottom: 0;
+      }
+
+      .page-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 0.75em;
+      }
+
+      h1 {
+        font-size: 1.875rem;
+        margin-top: 1.875rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        margin-top: 1.5rem;
+      }
+
+      h3 {
+        font-size: 1.25rem;
+        margin-top: 1.25rem;
+      }
+
+      .source {
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        padding: 1.5em;
+        word-break: break-all;
+      }
+
+      .callout {
+        border-radius: 3px;
+        padding: 1rem;
+      }
+
+      figure {
+        margin: 1.25em 0;
+        page-break-inside: avoid;
+      }
+
+      figcaption {
+        opacity: 0.5;
+        font-size: 85%;
+        margin-top: 0.5em;
+      }
+
+      mark {
+        background-color: transparent;
+      }
+
+      .indented {
+        padding-left: 1.5em;
+      }
+
+      hr {
+        background: transparent;
+        display: block;
+        width: 100%;
+        height: 1px;
+        visibility: visible;
+        border: none;
+        border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      @media only print {
+        img {
+          max-height: 100vh;
+          object-fit: contain;
+        }
+      }
+
+      @page {
+        margin: 1in;
+      }
+
+      .collection-content {
+        font-size: 0.875rem;
+      }
+
+      .column-list {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .column {
+        padding: 0 1em;
+      }
+
+      .column:first-child {
+        padding-left: 0;
+      }
+
+      .column:last-child {
+        padding-right: 0;
+      }
+
+      .table_of_contents-item {
+        display: block;
+        font-size: 0.875rem;
+        line-height: 1.3;
+        padding: 0.125rem;
+      }
+
+      .table_of_contents-indent-1 {
+        margin-left: 1.5rem;
+      }
+
+      .table_of_contents-indent-2 {
+        margin-left: 3rem;
+      }
+
+      .table_of_contents-indent-3 {
+        margin-left: 4.5rem;
+      }
+
+      .table_of_contents-link {
+        text-decoration: none;
+        opacity: 0.7;
+        border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid rgba(55, 53, 47, 0.09);
+        border-collapse: collapse;
+      }
+
+      table {
+        border-left: none;
+        border-right: none;
+      }
+
+      th,
+      td {
+        font-weight: normal;
+        padding: 0.25em 0.5em;
+        line-height: 1.5;
+        min-height: 1.5em;
+        text-align: left;
+      }
+
+      th {
+        color: rgba(55, 53, 47, 0.6);
+      }
+
+      ol,
+      ul {
+        margin: 0;
+        margin-block-start: 0.6em;
+        margin-block-end: 0.6em;
+      }
+
+      li > ol:first-child,
+      li > ul:first-child {
+        margin-block-start: 0.6em;
+      }
+
+      ul > li {
+        list-style: disc;
+      }
+
+      ul.to-do-list {
+        padding-inline-start: 0;
+      }
+
+      ul.to-do-list > li {
+        list-style: none;
+      }
+
+      .to-do-children-checked {
+        text-decoration: line-through;
+        opacity: 0.375;
+      }
+
+      ul.toggle > li {
+        list-style: none;
+      }
+
+      ul {
+        padding-inline-start: 1.7em;
+      }
+
+      ul > li {
+        padding-left: 0.1em;
+      }
+
+      ol {
+        padding-inline-start: 1.6em;
+      }
+
+      ol > li {
+        padding-left: 0.2em;
+      }
+
+      .mono ol {
+        padding-inline-start: 2em;
+      }
+
+      .mono ol > li {
+        text-indent: -0.4em;
+      }
+
+      .toggle {
+        padding-inline-start: 0em;
+        list-style-type: none;
+      }
+
+      /* Indent toggle children */
+      .toggle > li > details {
+        padding-left: 1.7em;
+      }
+
+      .toggle > li > details > summary {
+        margin-left: -1.1em;
+      }
+
+      .selected-value {
+        display: inline-block;
+        padding: 0 0.5em;
+        background: rgba(206, 205, 202, 0.5);
+        border-radius: 3px;
+        margin-right: 0.5em;
+        margin-top: 0.3em;
+        margin-bottom: 0.3em;
+        white-space: nowrap;
+      }
+
+      .collection-title {
+        display: inline-block;
+        margin-right: 1em;
+      }
+
+      .simple-table {
+        margin-top: 1em;
+        font-size: 0.875rem;
+        empty-cells: show;
+      }
+      .simple-table td {
+        height: 29px;
+        min-width: 120px;
+      }
+
+      .simple-table th {
+        height: 29px;
+        min-width: 120px;
+      }
+
+      .simple-table-header-color {
+        background: rgb(247, 246, 243);
+        color: black;
+      }
+      .simple-table-header {
+        font-weight: 500;
+      }
+
+      time {
+        opacity: 0.5;
+      }
+
+      .icon {
+        display: inline-block;
+        max-width: 1.2em;
+        max-height: 1.2em;
+        text-decoration: none;
+        vertical-align: text-bottom;
+        margin-right: 0.5em;
+      }
+
+      img.icon {
+        border-radius: 3px;
+      }
+
+      .user-icon {
+        width: 1.5em;
+        height: 1.5em;
+        border-radius: 100%;
+        margin-right: 0.5rem;
+      }
+
+      .user-icon-inner {
+        font-size: 0.8em;
+      }
+
+      .text-icon {
+        border: 1px solid #000;
+        text-align: center;
+      }
+
+      .page-cover-image {
+        display: block;
+        object-fit: cover;
+        width: 100%;
+        max-height: 30vh;
+      }
+
+      .page-header-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .page-header-icon-with-cover {
+        margin-top: -0.72em;
+        margin-left: 0.07em;
+      }
+
+      .page-header-icon img {
+        border-radius: 3px;
+      }
+
+      .link-to-page {
+        margin: 1em 0;
+        padding: 0;
+        border: none;
+        font-weight: 500;
+      }
+
+      p > .user {
+        opacity: 0.5;
+      }
+
+      td > .user,
+      td > time {
+        white-space: nowrap;
+      }
+
+      input[type="checkbox"] {
+        transform: scale(1.5);
+        margin-right: 0.6em;
+        vertical-align: middle;
+      }
+
+      p {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+      }
+
+      .image {
+        border: none;
+        margin: 1.5em 0;
+        padding: 0;
+        border-radius: 0;
+        text-align: center;
+      }
+
+      .code,
+      code {
+        background: rgba(135, 131, 120, 0.15);
+        border-radius: 3px;
+        padding: 0.2em 0.4em;
+        border-radius: 3px;
+        font-size: 85%;
+        tab-size: 2;
+      }
+
+      code {
+        color: #eb5757;
+      }
+
+      .code {
+        padding: 1.5em 1em;
+      }
+
+      .code-wrap {
+        white-space: pre-wrap;
+        word-break: break-all;
+      }
+
+      .code > code {
+        background: none;
+        padding: 0;
+        font-size: 100%;
+        color: inherit;
+      }
+
+      blockquote {
+        font-size: 1.25em;
+        margin: 1em 0;
+        padding-left: 1em;
+        border-left: 3px solid rgb(55, 53, 47);
+      }
+
+      .bookmark {
+        text-decoration: none;
+        max-height: 8em;
+        padding: 0;
+        display: flex;
+        width: 100%;
+        align-items: stretch;
+      }
+
+      .bookmark-title {
+        font-size: 0.85em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 1.75em;
+        white-space: nowrap;
+      }
+
+      .bookmark-text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .bookmark-info {
+        flex: 4 1 180px;
+        padding: 12px 14px 14px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .bookmark-image {
+        width: 33%;
+        flex: 1 1 180px;
+        display: block;
+        position: relative;
+        object-fit: cover;
+        border-radius: 1px;
+      }
+
+      .bookmark-description {
+        color: rgba(55, 53, 47, 0.6);
+        font-size: 0.75em;
+        overflow: hidden;
+        max-height: 4.5em;
+        word-break: break-word;
+      }
+
+      .bookmark-href {
+        font-size: 0.75em;
+        margin-top: 0.25em;
+      }
+
+      .sans {
+        font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif,
+          "Segoe UI Emoji", "Segoe UI Symbol";
+      }
+      .code {
+        font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono",
+          "Liberation Mono", Courier, monospace;
+      }
+      .serif {
+        font-family: Lyon-Text, Georgia, ui-serif, serif;
+      }
+      .mono {
+        font-family: iawriter-mono, Nitti, Menlo, Courier, monospace;
+      }
+      .pdf .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif,
+          "Segoe UI Emoji", "Segoe UI Symbol", "Twemoji", "Noto Color Emoji",
+          "Noto Sans CJK JP";
+      }
+      .pdf:lang(zh-CN) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif,
+          "Segoe UI Emoji", "Segoe UI Symbol", "Twemoji", "Noto Color Emoji",
+          "Noto Sans CJK SC";
+      }
+      .pdf:lang(zh-TW) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif,
+          "Segoe UI Emoji", "Segoe UI Symbol", "Twemoji", "Noto Color Emoji",
+          "Noto Sans CJK TC";
+      }
+      .pdf:lang(ko-KR) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif,
+          "Segoe UI Emoji", "Segoe UI Symbol", "Twemoji", "Noto Color Emoji",
+          "Noto Sans CJK KR";
+      }
+      .pdf .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK JP";
+      }
+      .pdf:lang(zh-CN) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK SC";
+      }
+      .pdf:lang(zh-TW) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK TC";
+      }
+      .pdf:lang(ko-KR) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK KR";
+      }
+      .pdf .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK JP";
+      }
+      .pdf:lang(zh-CN) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK SC";
+      }
+      .pdf:lang(zh-TW) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK TC";
+      }
+      .pdf:lang(ko-KR) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK KR";
+      }
+      .pdf .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK JP";
+      }
+      .pdf:lang(zh-CN) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK SC";
+      }
+      .pdf:lang(zh-TW) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK TC";
+      }
+      .pdf:lang(ko-KR) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK KR";
+      }
+      .highlight-default {
+        color: rgba(55, 53, 47, 1);
+      }
+      .highlight-gray {
+        color: rgba(120, 119, 116, 1);
+        fill: rgba(120, 119, 116, 1);
+      }
+      .highlight-brown {
+        color: rgba(159, 107, 83, 1);
+        fill: rgba(159, 107, 83, 1);
+      }
+      .highlight-orange {
+        color: rgba(217, 115, 13, 1);
+        fill: rgba(217, 115, 13, 1);
+      }
+      .highlight-yellow {
+        color: rgba(203, 145, 47, 1);
+        fill: rgba(203, 145, 47, 1);
+      }
+      .highlight-teal {
+        color: rgba(68, 131, 97, 1);
+        fill: rgba(68, 131, 97, 1);
+      }
+      .highlight-blue {
+        color: rgba(51, 126, 169, 1);
+        fill: rgba(51, 126, 169, 1);
+      }
+      .highlight-purple {
+        color: rgba(144, 101, 176, 1);
+        fill: rgba(144, 101, 176, 1);
+      }
+      .highlight-pink {
+        color: rgba(193, 76, 138, 1);
+        fill: rgba(193, 76, 138, 1);
+      }
+      .highlight-red {
+        color: rgba(212, 76, 71, 1);
+        fill: rgba(212, 76, 71, 1);
+      }
+      .highlight-gray_background {
+        background: rgba(241, 241, 239, 1);
+      }
+      .highlight-brown_background {
+        background: rgba(244, 238, 238, 1);
+      }
+      .highlight-orange_background {
+        background: rgba(251, 236, 221, 1);
+      }
+      .highlight-yellow_background {
+        background: rgba(251, 243, 219, 1);
+      }
+      .highlight-teal_background {
+        background: rgba(237, 243, 236, 1);
+      }
+      .highlight-blue_background {
+        background: rgba(231, 243, 248, 1);
+      }
+      .highlight-purple_background {
+        background: rgba(244, 240, 247, 0.8);
+      }
+      .highlight-pink_background {
+        background: rgba(249, 238, 243, 0.8);
+      }
+      .highlight-red_background {
+        background: rgba(253, 235, 236, 1);
+      }
+      .block-color-default {
+        color: inherit;
+        fill: inherit;
+      }
+      .block-color-gray {
+        color: rgba(120, 119, 116, 1);
+        fill: rgba(120, 119, 116, 1);
+      }
+      .block-color-brown {
+        color: rgba(159, 107, 83, 1);
+        fill: rgba(159, 107, 83, 1);
+      }
+      .block-color-orange {
+        color: rgba(217, 115, 13, 1);
+        fill: rgba(217, 115, 13, 1);
+      }
+      .block-color-yellow {
+        color: rgba(203, 145, 47, 1);
+        fill: rgba(203, 145, 47, 1);
+      }
+      .block-color-teal {
+        color: rgba(68, 131, 97, 1);
+        fill: rgba(68, 131, 97, 1);
+      }
+      .block-color-blue {
+        color: rgba(51, 126, 169, 1);
+        fill: rgba(51, 126, 169, 1);
+      }
+      .block-color-purple {
+        color: rgba(144, 101, 176, 1);
+        fill: rgba(144, 101, 176, 1);
+      }
+      .block-color-pink {
+        color: rgba(193, 76, 138, 1);
+        fill: rgba(193, 76, 138, 1);
+      }
+      .block-color-red {
+        color: rgba(212, 76, 71, 1);
+        fill: rgba(212, 76, 71, 1);
+      }
+      .block-color-gray_background {
+        background: rgba(241, 241, 239, 1);
+      }
+      .block-color-brown_background {
+        background: rgba(244, 238, 238, 1);
+      }
+      .block-color-orange_background {
+        background: rgba(251, 236, 221, 1);
+      }
+      .block-color-yellow_background {
+        background: rgba(251, 243, 219, 1);
+      }
+      .block-color-teal_background {
+        background: rgba(237, 243, 236, 1);
+      }
+      .block-color-blue_background {
+        background: rgba(231, 243, 248, 1);
+      }
+      .block-color-purple_background {
+        background: rgba(244, 240, 247, 0.8);
+      }
+      .block-color-pink_background {
+        background: rgba(249, 238, 243, 0.8);
+      }
+      .block-color-red_background {
+        background: rgba(253, 235, 236, 1);
+      }
+      .select-value-color-pink {
+        background-color: rgba(245, 224, 233, 1);
+      }
+      .select-value-color-purple {
+        background-color: rgba(232, 222, 238, 1);
+      }
+      .select-value-color-green {
+        background-color: rgba(219, 237, 219, 1);
+      }
+      .select-value-color-gray {
+        background-color: rgba(227, 226, 224, 1);
+      }
+      .select-value-color-translucentGray {
+        background-color: rgba(255, 255, 255, 0.0375);
+      }
+      .select-value-color-orange {
+        background-color: rgba(250, 222, 201, 1);
+      }
+      .select-value-color-brown {
+        background-color: rgba(238, 224, 218, 1);
+      }
+      .select-value-color-red {
+        background-color: rgba(255, 226, 221, 1);
+      }
+      .select-value-color-yellow {
+        background-color: rgba(253, 236, 200, 1);
+      }
+      .select-value-color-blue {
+        background-color: rgba(211, 229, 239, 1);
+      }
+
+      .checkbox {
+        display: inline-flex;
+        vertical-align: text-bottom;
+        width: 16;
+        height: 16;
+        background-size: 16px;
+        margin-left: 2px;
+        margin-right: 5px;
+      }
+
+      .checkbox-on {
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+      }
+
+      .checkbox-off {
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+      }
+    </style>
+  </head>
+  <body>
+    <article id="de91bc27-8afa-4296-9d5f-567b8ee744e6" class="page sans">
+      <header><h1 class="page-title">Report</h1></header>
+      <div class="page-body">
+        <h2 id="144e06be-6268-4534-8d44-f49b49d6fe96" class="">
+          1. Introduction
+        </h2>
+        <p id="5f730f9c-f9c6-4be9-89af-c26029979e9e" class="">
+          As security consultants for Not Uber, an up-and-coming ride-hailing
+          service, we are responsible for enhancing the safety and privacy of
+          its user-centric platform. Our primary objective is to thoroughly
+          analyze the provided source code, identify potential security and
+          privacy vulnerabilities, and recommend effective solutions to fortify
+          the overall security posture of the service, ensuring an optimal and
+          secure experience for Not Uber&#x27;s growing user base.
+        </p>
+        <h2 id="0795ea30-abd8-4f40-9bd8-a4ceb839a8a8" class="">
+          2. Methodology
+        </h2>
+        <p id="1eb0dc0f-0a5b-4f67-8715-3313328c6140" class="">
+          Our penetration testing methodology for Not Uber&#x27;s ride-hailing
+          service involves two stages: black-box and white-box testing. During
+          black-box testing, we simulate external attacks using tools like OWASP
+          Zed Attack Proxy (ZAP) and curl, targeting vulnerabilities such as SQL
+          injection and XSS. In the white-box testing stage, we conduct a manual
+          code review to identify security and privacy issues within the source
+          code. If we uncover significant vulnerabilities, we reattempt
+          exploitation to validate our findings. This combined approach ensures
+          a comprehensive security assessment, providing actionable
+          recommendations for system improvements.
+        </p>
+        <h2 id="e4a304be-dee5-4abc-a478-f12a74070329" class="">
+          3. Abstract of Findings
+        </h2>
+        <p id="2e686e40-9055-489a-ab73-cfe4b87a6664" class="">
+          Our security assessment of the &quot;Not Uber&quot; ride-hailing
+          service has identified several security and privacy issues that
+          require attention. The most critical vulnerabilities include potential
+          SQL injection attacks, particularly in the
+          <code><strong>/passenger.json</strong></code> and
+          <code><strong>/vehicle.json</strong></code> endpoints, where user
+          input is not properly sanitized before being used in database queries.
+          This could allow malicious users to manipulate and access sensitive
+          data. Another concern is the overly permissive Cross-Origin Resource
+          Sharing (CORS) headers in the <code><strong>/rides</strong></code> and
+          <code><strong>/update</strong></code> endpoints, which could lead to
+          unauthorized cross-origin requests, exposing user data to third
+          parties. Additionally, inadequate input validation for usernames in
+          both the <code><strong>/rides</strong></code> and
+          <code><strong>/update</strong></code> endpoints may result in
+          Cross-Site Scripting (XSS) attacks or database inconsistencies. We
+          have provided detailed descriptions of each vulnerability, along with
+          recommended solutions, to help strengthen the security posture of the
+          application. It is crucial to address these concerns promptly to
+          protect the ride-hailing service and its users from potential attacks
+          and data breaches.
+        </p>
+        <p id="962864a2-3b6b-49a8-b887-b500d39f4f66" class="">
+          Our security assessment of the &quot;Not Uber&quot; ride-hailing
+          service has identified several security and privacy issues. The most
+          critical vulnerabilities include potential SQL injection attacks due
+          to a lack of proper input validation and sanitization, overly
+          permissive Cross-Origin Resource Sharing (CORS) headers that could
+          lead to unauthorized cross-origin requests, and inadequate input
+          validation for usernames. These issues can result in data leaks,
+          unauthorized access, and other security threats. We have provided
+          detailed descriptions of each vulnerability, along with recommended
+          solutions, to help strengthen the security posture of the application.
+          It is crucial to address these concerns promptly to protect the
+          ride-hailing service and its users from potential attacks and data
+          breaches.
+        </p>
+        <h2 id="ccbc1e92-ad97-4dcf-8972-114f4298b36a" class="">
+          4. Issues Found
+        </h2>
+        <h3 id="44da6c5c-776d-4852-830c-2228b14c44f0" class="">
+          <details open=""><summary>4.1 Issue: SQL Injection</summary></details>
+        </h3>
+        <div class="indented">
+          <ul id="17eb9964-f15b-4c8c-9013-e5aa8812f510" class="bulleted-list">
+            <li style="list-style-type: disc">
+              Location: GET
+              <code><strong>/passenger.json</strong></code> endpoint
+            </li>
+          </ul>
+          <ul id="e4d8724a-a808-4e5e-b74f-c4251c42a800" class="bulleted-list">
+            <li style="list-style-type: disc">Severity: High</li>
+          </ul>
+          <ul id="cf3f58bf-f32b-444f-b40a-a38d18845898" class="bulleted-list">
+            <li style="list-style-type: disc">
+              Description: During the manual code review, we discovered that the
+              application is vulnerable to SQL injection attacks. This
+              vulnerability arises from the improper handling of the
+              <code><strong>usernameEntry</strong></code> variable, which is
+              directly concatenated into the SQL query string. An attacker can
+              exploit this to execute arbitrary SQL commands, potentially
+              compromising the database and sensitive user data.
+            </li>
+          </ul>
+          <ul id="ec79b09b-9596-42e5-a0e6-7f65b4877747" class="bulleted-list">
+            <li style="list-style-type: disc">
+              Proof of vulnerability: We performed a test by sending a specially
+              crafted request with an SQL injection payload. The application
+              returned data that confirmed the successful execution of our
+              injected SQL command.
+              <ul
+                id="d8caadeb-57be-4dd6-bb32-680f902eb558"
+                class="bulleted-list"
+              >
+                <li style="list-style-type: circle">
+                  Here&#x27;s a screenshot illustrating the problem:
+                  <p id="aa3a45e5-aa61-40ea-be78-34e429ec6d16" class="">
+                    Delete all rows by setting <code>username</code> to
+                    <code
+                      >admin&#x27;; DELETE FROM vehicles; SELECT * FROM vehicles
+                      WHERE &#x27;a&#x27;=&#x27;a</code
+                    >
+                  </p>
+                  <figure
+                    id="451cdbd0-17f9-451a-97b9-d6528a0ae35a"
+                    class="image"
+                  >
+                    <a
+                      href="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled.png"
+                      ><img
+                        style="width: 883px"
+                        src="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled.png"
+                    /></a>
+                  </figure>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <ul id="9fff2208-1ccf-495d-88c9-68706abb69ac" class="bulleted-list">
+            <li style="list-style-type: disc">
+              Resolution: To resolve this issue, we recommend using the
+              <code><strong>validator</strong></code> module to sanitize and
+              validate user input before incorporating it into the SQL query
+              string. This will help prevent SQL injection attacks.
+              <p id="497aea6c-a2d0-463b-912d-2e1f40098ca9" class="">
+                For example, modify the code in the
+                <code><strong>/passenger.json</strong></code
+                ><strong> </strong>endpoint:
+              </p>
+              <pre
+                id="ceb433d5-03bb-4d6b-9d1e-2a0a51aec818"
+                class="code code-wrap"
+              ><code>var validator = require(&#x27;validator&#x27;);
 
 // ...
 
@@ -679,8 +921,72 @@ if (validator.isAlphanumeric(usernameEntry) &amp;&amp; usernameEntry.length &lt;
 } else {
   // Return an error message
   response.status(400).send(&#x27;{&quot;error&quot;: &quot;Invalid username&quot;}&#x27;);
-}</code></pre></li></ul><h3 id="833b0bd1-b055-438d-865a-de138a7ab2eb" class=""><details open=""><summary>4.2 Issue: SQL Injection</summary></details></h3><div class="indented"><ul id="64958366-ad35-4202-8910-247ac4e40724" class="bulleted-list"><li style="list-style-type:disc">Location: GET <code><strong>/vehicle.json</strong></code> endpoint</li></ul><ul id="c1529a86-9eb2-4ce1-aa15-3abef3d192c4" class="bulleted-list"><li style="list-style-type:disc">Severity: High</li></ul><ul id="68eefa88-26b9-45e3-ba76-3b6c8f68cf59" class="bulleted-list"><li style="list-style-type:disc">Description: During the manual code review, we discovered that the application is vulnerable to SQL injection attacks at the <code><strong>/vehicle.json</strong></code> endpoint. This vulnerability arises from the improper handling of the <code><strong>usernameEntry</strong></code> variable, which is directly concatenated into the SQL query string. An attacker can exploit this to execute arbitrary SQL commands, potentially compromising the database and sensitive user data.
-Proof of vulnerability: We performed a test by sending a specially crafted request with an SQL injection payload. The application returned data that confirmed the successful execution of our injected SQL command. <ul id="b9643968-998f-4bc8-8baa-2491f68e7757" class="bulleted-list"><li style="list-style-type:circle">Here&#x27;s a screenshot illustrating the problem (Dump passengers):<figure id="9b396d09-fc43-4b81-8933-d7701227ba2f" class="image"><a href="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%201.png"><img style="width:1125px" src="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%201.png"/></a></figure></li></ul></li></ul><ul id="bff63f2b-ba8f-4f08-af40-1404da5fc7fc" class="bulleted-list"><li style="list-style-type:disc">Resolution: To resolve this issue, we recommend using the <code><strong>validator</strong></code> module to sanitize and validate user input before incorporating it into the SQL query string. This will help prevent SQL injection attacks. Modify the code in the <code><strong>/vehicle.json</strong></code> endpoint as follows:<pre id="410f8b2b-7d8c-43ad-b9b7-d23c203535c8" class="code code-wrap"><code>var validator = require(&#x27;validator&#x27;);
+}</code></pre>
+            </li>
+          </ul>
+          <h3 id="833b0bd1-b055-438d-865a-de138a7ab2eb" class="">
+            <details open="">
+              <summary>4.2 Issue: SQL Injection</summary>
+            </details>
+          </h3>
+          <div class="indented">
+            <ul id="64958366-ad35-4202-8910-247ac4e40724" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Location: GET
+                <code><strong>/vehicle.json</strong></code> endpoint
+              </li>
+            </ul>
+            <ul id="c1529a86-9eb2-4ce1-aa15-3abef3d192c4" class="bulleted-list">
+              <li style="list-style-type: disc">Severity: High</li>
+            </ul>
+            <ul id="68eefa88-26b9-45e3-ba76-3b6c8f68cf59" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Description: During the manual code review, we discovered that
+                the application is vulnerable to SQL injection attacks at the
+                <code><strong>/vehicle.json</strong></code> endpoint. This
+                vulnerability arises from the improper handling of the
+                <code><strong>usernameEntry</strong></code> variable, which is
+                directly concatenated into the SQL query string. An attacker can
+                exploit this to execute arbitrary SQL commands, potentially
+                compromising the database and sensitive user data. Proof of
+                vulnerability: We performed a test by sending a specially
+                crafted request with an SQL injection payload. The application
+                returned data that confirmed the successful execution of our
+                injected SQL command.
+                <ul
+                  id="b9643968-998f-4bc8-8baa-2491f68e7757"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: circle">
+                    Here&#x27;s a screenshot illustrating the problem (Dump
+                    passengers):
+                    <figure
+                      id="9b396d09-fc43-4b81-8933-d7701227ba2f"
+                      class="image"
+                    >
+                      <a
+                        href="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%201.png"
+                        ><img
+                          style="width: 1125px"
+                          src="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%201.png"
+                      /></a>
+                    </figure>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <ul id="bff63f2b-ba8f-4f08-af40-1404da5fc7fc" class="bulleted-list">
+              <li style="list-style-type: disc">
+                Resolution: To resolve this issue, we recommend using the
+                <code><strong>validator</strong></code> module to sanitize and
+                validate user input before incorporating it into the SQL query
+                string. This will help prevent SQL injection attacks. Modify the
+                code in the <code><strong>/vehicle.json</strong></code> endpoint
+                as follows:
+                <pre
+                  id="410f8b2b-7d8c-43ad-b9b7-d23c203535c8"
+                  class="code code-wrap"
+                ><code>var validator = require(&#x27;validator&#x27;);
 
 // ...
 
@@ -693,8 +999,95 @@ if (validator.isAlphanumeric(usernameEntry) &amp;&amp; usernameEntry.length &lt;
   // Return an error message
   response.status(400).send(&#x27;{&quot;error&quot;: &quot;Invalid username&quot;}&#x27;);
 }
-</code></pre></li></ul><h3 id="c6356a5b-a8dc-4d1d-8b52-678178819ccf" class=""><details open=""><summary>4.3 Issue: Lack of Input Validation and Sanitization for <code><strong>username</strong></code></summary></details></h3><div class="indented"><ul id="6bc1b6c7-4421-4cc5-bc34-1877710f9ef5" class="bulleted-list"><li style="list-style-type:disc">Location: POST <code><strong>/rides</strong></code> endpoint</li></ul><ul id="f39c273c-017a-4801-87f6-6fed6cf5a339" class="bulleted-list"><li style="list-style-type:disc">Severity: High</li></ul><ul id="8930edc9-a45d-4ead-8f63-907e0cff8420" class="bulleted-list"><li style="list-style-type:disc">Description: During the black-box testing and manual code review, we observed that the <code><strong>/rides</strong></code> endpoint does not properly validate and sanitize the <code><strong>username</strong></code> input before inserting it into the database. This may lead to potential security vulnerabilities, such as Cross-Site Scripting (XSS) attacks or database inconsistencies.</li></ul><ul id="49da121e-8955-4421-8df7-c3eab53f0adf" class="bulleted-list"><li style="list-style-type:disc">Proof of vulnerability: Screenshots demonstrating the lack of input validation and sanitization (e.g. we injected something cool):<figure id="61708f7d-ca34-48a7-92fd-e7350342e34b" class="image"><a href="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%202.png"><img style="width:1197px" src="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%202.png"/></a></figure><figure id="67ec915a-9de0-4d55-b605-52e2ec204760" class="image"><a href="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%203.png"><img style="width:931px" src="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%203.png"/></a></figure></li></ul><p id="76574f0a-ae12-49d6-8b12-48919b3f1bdb" class="">
-</p><ul id="a9284d2f-fe42-499f-9cbe-81cffe43b071" class="bulleted-list"><li style="list-style-type:disc">Resolution: To mitigate this issue, since the <code><strong>validator</strong></code> module is already installed, we recommend updating the code in the <code><strong>/rides</strong></code> endpoint to sanitize and validate the <code><strong>username</strong></code> input before processing it further. Modify the code as follows:<pre id="b57822ee-86ac-4d10-9ea5-a953f506c155" class="code code-wrap"><code>var validator = require(&#x27;validator&#x27;);
+</code></pre>
+              </li>
+            </ul>
+            <h3 id="c6356a5b-a8dc-4d1d-8b52-678178819ccf" class="">
+              <details open="">
+                <summary>
+                  4.3 Issue: Lack of Input Validation and Sanitization for
+                  <code><strong>username</strong></code>
+                </summary>
+              </details>
+            </h3>
+            <div class="indented">
+              <ul
+                id="6bc1b6c7-4421-4cc5-bc34-1877710f9ef5"
+                class="bulleted-list"
+              >
+                <li style="list-style-type: disc">
+                  Location: POST <code><strong>/rides</strong></code> endpoint
+                </li>
+              </ul>
+              <ul
+                id="f39c273c-017a-4801-87f6-6fed6cf5a339"
+                class="bulleted-list"
+              >
+                <li style="list-style-type: disc">Severity: High</li>
+              </ul>
+              <ul
+                id="8930edc9-a45d-4ead-8f63-907e0cff8420"
+                class="bulleted-list"
+              >
+                <li style="list-style-type: disc">
+                  Description: During the black-box testing and manual code
+                  review, we observed that the
+                  <code><strong>/rides</strong></code> endpoint does not
+                  properly validate and sanitize the
+                  <code><strong>username</strong></code> input before inserting
+                  it into the database. This may lead to potential security
+                  vulnerabilities, such as Cross-Site Scripting (XSS) attacks or
+                  database inconsistencies.
+                </li>
+              </ul>
+              <ul
+                id="49da121e-8955-4421-8df7-c3eab53f0adf"
+                class="bulleted-list"
+              >
+                <li style="list-style-type: disc">
+                  Proof of vulnerability: Screenshots demonstrating the lack of
+                  input validation and sanitization (e.g. we injected something
+                  cool):
+                  <figure
+                    id="61708f7d-ca34-48a7-92fd-e7350342e34b"
+                    class="image"
+                  >
+                    <a
+                      href="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%202.png"
+                      ><img
+                        style="width: 1197px"
+                        src="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%202.png"
+                    /></a>
+                  </figure>
+                  <figure
+                    id="67ec915a-9de0-4d55-b605-52e2ec204760"
+                    class="image"
+                  >
+                    <a
+                      href="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%203.png"
+                      ><img
+                        style="width: 931px"
+                        src="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%203.png"
+                    /></a>
+                  </figure>
+                </li>
+              </ul>
+              <p id="76574f0a-ae12-49d6-8b12-48919b3f1bdb" class=""></p>
+              <ul
+                id="a9284d2f-fe42-499f-9cbe-81cffe43b071"
+                class="bulleted-list"
+              >
+                <li style="list-style-type: disc">
+                  Resolution: To mitigate this issue, since the
+                  <code><strong>validator</strong></code> module is already
+                  installed, we recommend updating the code in the
+                  <code><strong>/rides</strong></code> endpoint to sanitize and
+                  validate the <code><strong>username</strong></code> input
+                  before processing it further. Modify the code as follows:
+                  <pre
+                    id="b57822ee-86ac-4d10-9ea5-a953f506c155"
+                    class="code code-wrap"
+                  ><code>var validator = require(&#x27;validator&#x27;);
 
 // ...
 
@@ -710,7 +1103,95 @@ if (
   // ... (rest of the code remains unchanged)
 } else {
   response.send(&#x27;{&quot;error&quot;:&quot;Whoops, something is wrong with your data!&quot;}&#x27;);
-}</code></pre><p id="3f672660-129e-4117-addf-b57cae36c9d0" class="">This change ensures that the <code><strong>username</strong></code> input is alphanumeric and has a maximum length of 20 characters. Implementing proper input validation and sanitization will help prevent security vulnerabilities and improve the overall security posture of the application.</p></li></ul><h3 id="f86a33c2-beee-4810-884d-2921f39ef85d" class=""><details open=""><summary>4.4 Issue: Lack of Input Validation and Sanitization for <code><strong>username</strong></code></summary></details></h3><div class="indented"><ul id="b1cb5264-0208-4c13-8a8a-a7279e599aab" class="bulleted-list"><li style="list-style-type:disc">Location: POST <code><strong>/update</strong></code> endpoint</li></ul><ul id="5d7aaf61-1ac4-4366-b985-586cb2487d09" class="bulleted-list"><li style="list-style-type:disc">Severity: High</li></ul><ul id="0e449d9f-7432-4c5e-90ce-9098fbfc663e" class="bulleted-list"><li style="list-style-type:disc">Description: During the black-box testing and manual code review, we observed that the <code><strong>/update</strong></code> endpoint does not properly validate and sanitize the <code><strong>username</strong></code> input before inserting it into the database. This may lead to potential security vulnerabilities, such as Cross-Site Scripting (XSS) attacks or database inconsistencies.</li></ul><ul id="a9f316de-ddaf-488a-9cd5-abe73ee8dcae" class="bulleted-list"><li style="list-style-type:disc">Proof of vulnerability: A screenshot demonstrating the lack of input validation and sanitization:<p id="28c5adbb-2082-44e0-9fff-aa0b7e7d9334" class="">Similar to <code>/rides</code>, we perform</p><figure id="f2eb121d-50f3-40b6-90a9-fb68bb2077d2" class="image"><a href="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%204.png"><img style="width:1288px" src="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%204.png"/></a></figure></li></ul><ul id="3bdbca5b-11a9-443b-9cc1-41eba87e2414" class="bulleted-list"><li style="list-style-type:disc">Resolution: To mitigate this issue, since the <code><strong>validator</strong></code> module is already installed, we recommend updating the code in the <code><strong>/update</strong></code> endpoint to sanitize and validate the <code><strong>username</strong></code> input before processing it further. Modify the code as follows:<pre id="d0065b30-9406-4860-96fa-245236c24d9a" class="code code-wrap"><code>var validator = require(&#x27;validator&#x27;);
+}</code></pre>
+                  <p id="3f672660-129e-4117-addf-b57cae36c9d0" class="">
+                    This change ensures that the
+                    <code><strong>username</strong></code> input is alphanumeric
+                    and has a maximum length of 20 characters. Implementing
+                    proper input validation and sanitization will help prevent
+                    security vulnerabilities and improve the overall security
+                    posture of the application.
+                  </p>
+                </li>
+              </ul>
+              <h3 id="f86a33c2-beee-4810-884d-2921f39ef85d" class="">
+                <details open="">
+                  <summary>
+                    4.4 Issue: Lack of Input Validation and Sanitization for
+                    <code><strong>username</strong></code>
+                  </summary>
+                </details>
+              </h3>
+              <div class="indented">
+                <ul
+                  id="b1cb5264-0208-4c13-8a8a-a7279e599aab"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Location: POST
+                    <code><strong>/update</strong></code> endpoint
+                  </li>
+                </ul>
+                <ul
+                  id="5d7aaf61-1ac4-4366-b985-586cb2487d09"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">Severity: High</li>
+                </ul>
+                <ul
+                  id="0e449d9f-7432-4c5e-90ce-9098fbfc663e"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Description: During the black-box testing and manual code
+                    review, we observed that the
+                    <code><strong>/update</strong></code> endpoint does not
+                    properly validate and sanitize the
+                    <code><strong>username</strong></code> input before
+                    inserting it into the database. This may lead to potential
+                    security vulnerabilities, such as Cross-Site Scripting (XSS)
+                    attacks or database inconsistencies.
+                  </li>
+                </ul>
+                <ul
+                  id="a9f316de-ddaf-488a-9cd5-abe73ee8dcae"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Proof of vulnerability: A screenshot demonstrating the lack
+                    of input validation and sanitization:
+                    <p id="28c5adbb-2082-44e0-9fff-aa0b7e7d9334" class="">
+                      Similar to <code>/rides</code>, we perform
+                    </p>
+                    <figure
+                      id="f2eb121d-50f3-40b6-90a9-fb68bb2077d2"
+                      class="image"
+                    >
+                      <a
+                        href="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%204.png"
+                        ><img
+                          style="width: 1288px"
+                          src="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%204.png"
+                      /></a>
+                    </figure>
+                  </li>
+                </ul>
+                <ul
+                  id="3bdbca5b-11a9-443b-9cc1-41eba87e2414"
+                  class="bulleted-list"
+                >
+                  <li style="list-style-type: disc">
+                    Resolution: To mitigate this issue, since the
+                    <code><strong>validator</strong></code> module is already
+                    installed, we recommend updating the code in the
+                    <code><strong>/update</strong></code> endpoint to sanitize
+                    and validate the
+                    <code><strong>username</strong></code> input before
+                    processing it further. Modify the code as follows:
+                    <pre
+                      id="d0065b30-9406-4860-96fa-245236c24d9a"
+                      class="code code-wrap"
+                    ><code>var validator = require(&#x27;validator&#x27;);
 
 // ...
 
@@ -726,7 +1207,86 @@ if (
   // ... (rest of the code remains unchanged)
 } else {
   response.send(&#x27;{&quot;error&quot;:&quot;Access denied&quot;}&#x27;);
-}</code></pre><p id="a50b24a7-9f81-4247-82c1-1b7a31044d82" class="">This change ensures that the <code><strong>username</strong></code> input is alphanumeric and has a maximum length of 20 characters. Implementing proper input validation and sanitization will help prevent security vulnerabilities and improve the overall security posture of the application.</p></li></ul><h3 id="6c13cf4e-3d43-4fda-b215-48d6c45cfb98" class=""><details open=""><summary>4.5 Issue: Insecure CORS Headers</summary></details></h3><div class="indented"><ul id="6a227e2c-aecf-44a8-a505-07128c18c275" class="bulleted-list"><li style="list-style-type:disc">Location: POST <code><strong>/rides</strong></code> endpoint</li></ul><ul id="ee4bd99f-2200-4826-ae89-1b49cdbc7fbc" class="bulleted-list"><li style="list-style-type:disc">Severity: Medium</li></ul><ul id="009e3796-8583-4657-b4e6-61ca44b2c831" class="bulleted-list"><li style="list-style-type:disc">Description: During the manual code review, we noticed that the application sets overly permissive Cross-Origin Resource Sharing (CORS) headers at the <code><strong>/rides</strong></code> endpoint. The current configuration allows any origin to access the resources, which may lead to potential security risks, such as Cross-Site Request Forgery (CSRF) attacks or unintended data leakage.</li></ul><ul id="96071cb7-fe08-4afc-b501-d7b36a52ba4a" class="bulleted-list"><li style="list-style-type:disc">Proof of vulnerability: A screenshot showcasing the CORS headers being set to allow any origin:<figure id="2eb12755-910e-4395-a3ed-857b280f96ec" class="image"><a href="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%205.png"><img style="width:584px" src="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%205.png"/></a></figure></li></ul><ul id="90777a93-5a0e-4c94-9907-bfa77e6d88d6" class="bulleted-list"><li style="list-style-type:disc">Resolution: To mitigate this issue, we recommend restricting the allowed origins to specific, trusted domains. Modify the CORS headers in the <code><strong>/rides</strong></code> endpoint as follows:<pre id="d5de7170-7ec1-4cc9-bd18-43f6c66a8d27" class="code code-wrap"><code>const allowedOrigins = [&quot;https://example.com&quot;, &quot;https://another-trusted-domain.com&quot;];
+}</code></pre>
+                    <p id="a50b24a7-9f81-4247-82c1-1b7a31044d82" class="">
+                      This change ensures that the
+                      <code><strong>username</strong></code> input is
+                      alphanumeric and has a maximum length of 20 characters.
+                      Implementing proper input validation and sanitization will
+                      help prevent security vulnerabilities and improve the
+                      overall security posture of the application.
+                    </p>
+                  </li>
+                </ul>
+                <h3 id="6c13cf4e-3d43-4fda-b215-48d6c45cfb98" class="">
+                  <details open="">
+                    <summary>4.5 Issue: Insecure CORS Headers</summary>
+                  </details>
+                </h3>
+                <div class="indented">
+                  <ul
+                    id="6a227e2c-aecf-44a8-a505-07128c18c275"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      Location: POST
+                      <code><strong>/rides</strong></code> endpoint
+                    </li>
+                  </ul>
+                  <ul
+                    id="ee4bd99f-2200-4826-ae89-1b49cdbc7fbc"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">Severity: Medium</li>
+                  </ul>
+                  <ul
+                    id="009e3796-8583-4657-b4e6-61ca44b2c831"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      Description: During the manual code review, we noticed
+                      that the application sets overly permissive Cross-Origin
+                      Resource Sharing (CORS) headers at the
+                      <code><strong>/rides</strong></code> endpoint. The current
+                      configuration allows any origin to access the resources,
+                      which may lead to potential security risks, such as
+                      Cross-Site Request Forgery (CSRF) attacks or unintended
+                      data leakage.
+                    </li>
+                  </ul>
+                  <ul
+                    id="96071cb7-fe08-4afc-b501-d7b36a52ba4a"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      Proof of vulnerability: A screenshot showcasing the CORS
+                      headers being set to allow any origin:
+                      <figure
+                        id="2eb12755-910e-4395-a3ed-857b280f96ec"
+                        class="image"
+                      >
+                        <a
+                          href="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%205.png"
+                          ><img
+                            style="width: 584px"
+                            src="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%205.png"
+                        /></a>
+                      </figure>
+                    </li>
+                  </ul>
+                  <ul
+                    id="90777a93-5a0e-4c94-9907-bfa77e6d88d6"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      Resolution: To mitigate this issue, we recommend
+                      restricting the allowed origins to specific, trusted
+                      domains. Modify the CORS headers in the
+                      <code><strong>/rides</strong></code> endpoint as follows:
+                      <pre
+                        id="d5de7170-7ec1-4cc9-bd18-43f6c66a8d27"
+                        class="code code-wrap"
+                      ><code>const allowedOrigins = [&quot;https://example.com&quot;, &quot;https://another-trusted-domain.com&quot;];
 
 const origin = request.headers.origin;
 if (allowedOrigins.includes(origin)) {
@@ -734,7 +1294,88 @@ if (allowedOrigins.includes(origin)) {
 } else {
   response.status(403).send(&quot;Unauthorized origin&quot;);
 }
-response.header(&quot;Access-Control-Allow-Headers&quot;, &quot;X-Requested-With, Content-Type&quot;);</code></pre><p id="21e50698-02a3-4da0-9ac7-e79c45c19d8d" class="">Replace <code><strong>https://example.com</strong></code> and <code><strong>https://another-trusted-domain.com</strong></code> with the actual trusted domains that should be allowed to access the resources. This change will ensure that only the specified domains can interact with the <code><strong>/rides</strong></code> endpoint, reducing the risk of unauthorized cross-origin requests.</p></li></ul><h3 id="625293c3-d317-4c4b-869f-cd2897c3ffbb" class=""><details open=""><summary>4.6 Issue: Insecure CORS Headers</summary></details></h3><div class="indented"><ul id="38479996-36cd-4fd3-b103-d676ac004de8" class="bulleted-list"><li style="list-style-type:disc">Location: POST <code><strong>/update</strong></code> endpoint</li></ul><ul id="a9cf60ca-015d-4e55-8bea-999da6b166d9" class="bulleted-list"><li style="list-style-type:disc">Severity: Medium</li></ul><ul id="5a2be4e8-bc84-471d-9dcc-15b8af4c767b" class="bulleted-list"><li style="list-style-type:disc">Description: During the manual code review, we noticed that the application sets overly permissive Cross-Origin Resource Sharing (CORS) headers at the <code><strong>/update</strong></code> endpoint. The current configuration allows any origin to access the resources, which may lead to potential security risks, such as Cross-Site Request Forgery (CSRF) attacks or unintended data leakage.<p id="6e87d11b-9344-4fe4-9eed-a73b66e57bce" class="">Proof of vulnerability: A screenshot showcasing the CORS headers being set to allow any origin:</p><figure id="15f44697-78e3-49df-9b52-b9c30efc318f" class="image"><a href="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%206.png"><img style="width:584px" src="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%206.png"/></a></figure></li></ul><ul id="edae4026-4bbd-4b8e-bd48-08905dda599d" class="bulleted-list"><li style="list-style-type:disc">Resolution: To mitigate this issue, we recommend restricting the allowed origins to specific, trusted domains. Modify the CORS headers in the <code><strong>/update</strong></code> endpoint as follows:<pre id="9519fa82-b7ab-40ef-a8f9-2b3dc2ad1baf" class="code code-wrap"><code>const allowedOrigins = [&quot;https://example.com&quot;, &quot;https://another-trusted-domain.com&quot;];
+response.header(&quot;Access-Control-Allow-Headers&quot;, &quot;X-Requested-With, Content-Type&quot;);</code></pre>
+                      <p id="21e50698-02a3-4da0-9ac7-e79c45c19d8d" class="">
+                        Replace
+                        <code><strong>https://example.com</strong></code> and
+                        <code
+                          ><strong
+                            >https://another-trusted-domain.com</strong
+                          ></code
+                        >
+                        with the actual trusted domains that should be allowed
+                        to access the resources. This change will ensure that
+                        only the specified domains can interact with the
+                        <code><strong>/rides</strong></code> endpoint, reducing
+                        the risk of unauthorized cross-origin requests.
+                      </p>
+                    </li>
+                  </ul>
+                  <h3 id="625293c3-d317-4c4b-869f-cd2897c3ffbb" class="">
+                    <details open="">
+                      <summary>4.6 Issue: Insecure CORS Headers</summary>
+                    </details>
+                  </h3>
+                  <div class="indented">
+                    <ul
+                      id="38479996-36cd-4fd3-b103-d676ac004de8"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: disc">
+                        Location: POST
+                        <code><strong>/update</strong></code> endpoint
+                      </li>
+                    </ul>
+                    <ul
+                      id="a9cf60ca-015d-4e55-8bea-999da6b166d9"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: disc">Severity: Medium</li>
+                    </ul>
+                    <ul
+                      id="5a2be4e8-bc84-471d-9dcc-15b8af4c767b"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: disc">
+                        Description: During the manual code review, we noticed
+                        that the application sets overly permissive Cross-Origin
+                        Resource Sharing (CORS) headers at the
+                        <code><strong>/update</strong></code> endpoint. The
+                        current configuration allows any origin to access the
+                        resources, which may lead to potential security risks,
+                        such as Cross-Site Request Forgery (CSRF) attacks or
+                        unintended data leakage.
+                        <p id="6e87d11b-9344-4fe4-9eed-a73b66e57bce" class="">
+                          Proof of vulnerability: A screenshot showcasing the
+                          CORS headers being set to allow any origin:
+                        </p>
+                        <figure
+                          id="15f44697-78e3-49df-9b52-b9c30efc318f"
+                          class="image"
+                        >
+                          <a
+                            href="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%206.png"
+                            ><img
+                              style="width: 584px"
+                              src="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%206.png"
+                          /></a>
+                        </figure>
+                      </li>
+                    </ul>
+                    <ul
+                      id="edae4026-4bbd-4b8e-bd48-08905dda599d"
+                      class="bulleted-list"
+                    >
+                      <li style="list-style-type: disc">
+                        Resolution: To mitigate this issue, we recommend
+                        restricting the allowed origins to specific, trusted
+                        domains. Modify the CORS headers in the
+                        <code><strong>/update</strong></code> endpoint as
+                        follows:
+                        <pre
+                          id="9519fa82-b7ab-40ef-a8f9-2b3dc2ad1baf"
+                          class="code code-wrap"
+                        ><code>const allowedOrigins = [&quot;https://example.com&quot;, &quot;https://another-trusted-domain.com&quot;];
 
 const origin = request.headers.origin;
 if (allowedOrigins.includes(origin)) {
@@ -742,5 +1383,64 @@ if (allowedOrigins.includes(origin)) {
 } else {
   response.status(403).send(&quot;Unauthorized origin&quot;);
 }
-response.header(&quot;Access-Control-Allow-Headers&quot;, &quot;X-Requested-With, Content-Type&quot;);</code></pre><p id="6a37cf5a-45ab-4908-8b69-65e881a30b44" class="">Replace <code><strong>https://example.com</strong></code> and <code><strong>https://another-trusted-domain.com</strong></code> with the actual trusted domains that should be allowed to access the resources. This change will ensure that only the specified domains can interact with the <code><strong>/update</strong></code> endpoint, reducing the risk of unauthorized cross-origin requests.</p></li></ul></div></div></div></div></div></div><h2 id="0c04e275-af7a-440a-a72a-f28a5b74d8b7" class="">5. Conclusion</h2><p id="00d79b49-e7c3-45d0-8aee-2c3a1dcd6556" class="">In conclusion, addressing the identified security and privacy issues in the &quot;Not Uber&quot; ride-hailing service is crucial for maintaining a secure and reliable platform for its users. We have provided recommendations to mitigate the most critical vulnerabilities, such as implementing proper input validation and sanitization to prevent SQL injection and XSS attacks and configuring CORS headers to ensure secure cross-origin requests. By addressing these concerns, the overall security posture of the application will be significantly improved.</p><p id="cbcba3be-0615-4402-bfa2-d34d49cbbd6d" class="">For future considerations, we recommend establishing a regular security audit schedule to stay up to date with the latest vulnerabilities and best practices. Additionally, investing in automated security testing tools and integrating them into the development process can help detect potential issues early on, minimizing the risks and costs associated with security breaches. Employee training on secure coding practices and threat awareness can also contribute to creating a security-conscious development culture.</p><p id="7b23fe74-86fe-47f9-8f28-a67dd9f49595" class="">Lastly, consider implementing security measures such as authentication, authorization, and encryption to further protect user data and enhance privacy. While these recommendations may come with additional costs, the long-term benefits of a secure and trustworthy ride-hailing service will likely outweigh the initial investment, ultimately leading to a safer and more successful platform.</p><p id="d4dff8e7-48d0-454b-9a59-37d722b46d02" class="">
-</p></div></article></body></html>
+response.header(&quot;Access-Control-Allow-Headers&quot;, &quot;X-Requested-With, Content-Type&quot;);</code></pre>
+                        <p id="6a37cf5a-45ab-4908-8b69-65e881a30b44" class="">
+                          Replace
+                          <code><strong>https://example.com</strong></code> and
+                          <code
+                            ><strong
+                              >https://another-trusted-domain.com</strong
+                            ></code
+                          >
+                          with the actual trusted domains that should be allowed
+                          to access the resources. This change will ensure that
+                          only the specified domains can interact with the
+                          <code><strong>/update</strong></code> endpoint,
+                          reducing the risk of unauthorized cross-origin
+                          requests.
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h2 id="0c04e275-af7a-440a-a72a-f28a5b74d8b7" class="">
+          5. Conclusion
+        </h2>
+        <p id="00d79b49-e7c3-45d0-8aee-2c3a1dcd6556" class="">
+          In conclusion, addressing the identified security and privacy issues
+          in the &quot;Not Uber&quot; ride-hailing service is crucial for
+          maintaining a secure and reliable platform for its users. We have
+          provided recommendations to mitigate the most critical
+          vulnerabilities, such as implementing proper input validation and
+          sanitization to prevent SQL injection and XSS attacks and configuring
+          CORS headers to ensure secure cross-origin requests. By addressing
+          these concerns, the overall security posture of the application will
+          be significantly improved.
+        </p>
+        <p id="cbcba3be-0615-4402-bfa2-d34d49cbbd6d" class="">
+          For future considerations, we recommend establishing a regular
+          security audit schedule to stay up to date with the latest
+          vulnerabilities and best practices. Additionally, investing in
+          automated security testing tools and integrating them into the
+          development process can help detect potential issues early on,
+          minimizing the risks and costs associated with security breaches.
+          Employee training on secure coding practices and threat awareness can
+          also contribute to creating a security-conscious development culture.
+        </p>
+        <p id="7b23fe74-86fe-47f9-8f28-a67dd9f49595" class="">
+          Lastly, consider implementing security measures such as
+          authentication, authorization, and encryption to further protect user
+          data and enhance privacy. While these recommendations may come with
+          additional costs, the long-term benefits of a secure and trustworthy
+          ride-hailing service will likely outweigh the initial investment,
+          ultimately leading to a safer and more successful platform.
+        </p>
+        <p id="d4dff8e7-48d0-454b-9a59-37d722b46d02" class=""></p>
+      </div>
+    </article>
+  </body>
+</html>
