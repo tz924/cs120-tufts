@@ -45,14 +45,14 @@
     <header id="header" class="fixed-top">
       <div class="container d-flex align-items-center">
         <h1 class="logo me-auto">
-          <a href="index.html">Jordan Marsh Security</a>
+          <a href="index.html">Jordan Marsh Cybersecurity</a>
         </h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
         <nav id="navbar" class="navbar">
           <ul>
-            <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+            <li><a class="nav-link scrollto active" href="#hero">Report</a></li>
           </ul>
           <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
@@ -104,13 +104,7 @@
       <section id="faq" class="faq section-bg">
         <div class="container" data-aos="fade-up">
           <div class="section-title">
-            <h2>Frequently Asked Questions</h2>
-            <p>
-              Magnam dolores commodi suscipit. Necessitatibus eius consequatur
-              ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam
-              quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.
-              Quia fugiat sit in iste officiis commodi quidem hic quas.
-            </p>
+            <h2>Risk Assessment Report</h2>
           </div>
 
           <article id="de91bc27-8afa-4296-9d5f-567b8ee744e6" class="page sans">
@@ -190,97 +184,100 @@
               <h2 id="ccbc1e92-ad97-4dcf-8972-114f4298b36a" class="">
                 4. Issues Found
               </h2>
-              <h3 id="44da6c5c-776d-4852-830c-2228b14c44f0" class="">
-                <details open="">
-                  <summary>4.1 Issue: SQL Injection</summary>
-                </details>
-              </h3>
-              <div class="indented">
-                <ul
-                  id="17eb9964-f15b-4c8c-9013-e5aa8812f510"
-                  class="bulleted-list"
+              <details open="">
+                <summary
+                  style="font-weight: 600; font-size: 1.25em; line-height: 1.3"
                 >
-                  <li style="list-style-type: disc">
-                    Location: GET
-                    <code><strong>/passenger.json</strong></code> endpoint
-                  </li>
-                </ul>
-                <ul
-                  id="e4d8724a-a808-4e5e-b74f-c4251c42a800"
-                  class="bulleted-list"
-                >
-                  <li style="list-style-type: disc">Severity: High</li>
-                </ul>
-                <ul
-                  id="cf3f58bf-f32b-444f-b40a-a38d18845898"
-                  class="bulleted-list"
-                >
-                  <li style="list-style-type: disc">
-                    Description: During the manual code review, we discovered
-                    that the application is vulnerable to SQL injection attacks.
-                    This vulnerability arises from the improper handling of the
-                    <code><strong>usernameEntry</strong></code> variable, which
-                    is directly concatenated into the SQL query string. An
-                    attacker can exploit this to execute arbitrary SQL commands,
-                    potentially compromising the database and sensitive user
-                    data.
-                  </li>
-                </ul>
-                <ul
-                  id="ec79b09b-9596-42e5-a0e6-7f65b4877747"
-                  class="bulleted-list"
-                >
-                  <li style="list-style-type: disc">
-                    Proof of vulnerability: We performed a test by sending a
-                    specially crafted request with an SQL injection payload. The
-                    application returned data that confirmed the successful
-                    execution of our injected SQL command.
-                    <ul
-                      id="d8caadeb-57be-4dd6-bb32-680f902eb558"
-                      class="bulleted-list"
-                    >
-                      <li style="list-style-type: circle">
-                        Here&#x27;s a screenshot illustrating the problem:
-                        <p id="aa3a45e5-aa61-40ea-be78-34e429ec6d16" class="">
-                          Delete all rows by setting <code>username</code> to
-                          <code
-                            >admin&#x27;; DELETE FROM vehicles; SELECT * FROM
-                            vehicles WHERE &#x27;a&#x27;=&#x27;a</code
+                  4.1 Issue: SQL Injection
+                </summary>
+                <div class="indented">
+                  <ul
+                    id="17eb9964-f15b-4c8c-9013-e5aa8812f510"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      Location: GET
+                      <code><strong>/passenger.json</strong></code> endpoint
+                    </li>
+                  </ul>
+                  <ul
+                    id="e4d8724a-a808-4e5e-b74f-c4251c42a800"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">Severity: High</li>
+                  </ul>
+                  <ul
+                    id="cf3f58bf-f32b-444f-b40a-a38d18845898"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      Description: During the manual code review, we discovered
+                      that the application is vulnerable to SQL injection
+                      attacks. This vulnerability arises from the improper
+                      handling of the
+                      <code><strong>usernameEntry</strong></code> variable,
+                      which is directly concatenated into the SQL query string.
+                      An attacker can exploit this to execute arbitrary SQL
+                      commands, potentially compromising the database and
+                      sensitive user data.
+                    </li>
+                  </ul>
+                  <ul
+                    id="ec79b09b-9596-42e5-a0e6-7f65b4877747"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      Proof of vulnerability: We performed a test by sending a
+                      specially crafted request with an SQL injection payload.
+                      The application returned data that confirmed the
+                      successful execution of our injected SQL command.
+                      <ul
+                        id="d8caadeb-57be-4dd6-bb32-680f902eb558"
+                        class="bulleted-list"
+                      >
+                        <li style="list-style-type: circle">
+                          Here&#x27;s a screenshot illustrating the problem:
+                          <p id="aa3a45e5-aa61-40ea-be78-34e429ec6d16" class="">
+                            Delete all rows by setting <code>username</code> to
+                            <code
+                              >admin&#x27;; DELETE FROM vehicles; SELECT * FROM
+                              vehicles WHERE &#x27;a&#x27;=&#x27;a</code
+                            >
+                          </p>
+                          <figure
+                            id="451cdbd0-17f9-451a-97b9-d6528a0ae35a"
+                            class="image"
                           >
-                        </p>
-                        <figure
-                          id="451cdbd0-17f9-451a-97b9-d6528a0ae35a"
-                          class="image"
-                        >
-                          <a
-                            href="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled.png"
-                            ><img
-                              style="width: 883px"
-                              src="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled.png"
-                          /></a>
-                        </figure>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-                <ul
-                  id="9fff2208-1ccf-495d-88c9-68706abb69ac"
-                  class="bulleted-list"
-                >
-                  <li style="list-style-type: disc">
-                    Resolution: To resolve this issue, we recommend using the
-                    <code><strong>validator</strong></code> module to sanitize
-                    and validate user input before incorporating it into the SQL
-                    query string. This will help prevent SQL injection attacks.
-                    <p id="497aea6c-a2d0-463b-912d-2e1f40098ca9" class="">
-                      For example, modify the code in the
-                      <code><strong>/passenger.json</strong></code
-                      ><strong> </strong>endpoint:
-                    </p>
-                    <pre
-                      id="ceb433d5-03bb-4d6b-9d1e-2a0a51aec818"
-                      class="code code-wrap"
-                    ><code>var validator = require(&#x27;validator&#x27;);
+                            <a
+                              href="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled.png"
+                              ><img
+                                style="width: 883px"
+                                src="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled.png"
+                            /></a>
+                          </figure>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                  <ul
+                    id="9fff2208-1ccf-495d-88c9-68706abb69ac"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      Resolution: To resolve this issue, we recommend using the
+                      <code><strong>validator</strong></code> module to sanitize
+                      and validate user input before incorporating it into the
+                      SQL query string. This will help prevent SQL injection
+                      attacks.
+                      <p id="497aea6c-a2d0-463b-912d-2e1f40098ca9" class="">
+                        For example, modify the code in the
+                        <code><strong>/passenger.json</strong></code
+                        ><strong> </strong>endpoint:
+                      </p>
+                      <pre
+                        id="ceb433d5-03bb-4d6b-9d1e-2a0a51aec818"
+                        class="code code-wrap"
+                      ><code>var validator = require(&#x27;validator&#x27;);
 
       // ...
 
@@ -293,13 +290,16 @@
         // Return an error message
         response.status(400).send(&#x27;{&quot;error&quot;: &quot;Invalid username&quot;}&#x27;);
       }</code></pre>
-                  </li>
-                </ul>
-                <h3 id="833b0bd1-b055-438d-865a-de138a7ab2eb" class="">
-                  <details open="">
-                    <summary>4.2 Issue: SQL Injection</summary>
-                  </details>
-                </h3>
+                    </li>
+                  </ul>
+                </div>
+              </details>
+              <details open="">
+                <summary
+                  style="font-weight: 600; font-size: 1.25em; line-height: 1.3"
+                >
+                  4.2 Issue: SQL Injection
+                </summary>
                 <div class="indented">
                   <ul
                     id="64958366-ad35-4202-8910-247ac4e40724"
@@ -341,7 +341,7 @@
                       >
                         <li style="list-style-type: circle">
                           Here&#x27;s a screenshot illustrating the problem
-                          (Dump passengers):
+                          (Delete rows from passengers):
                           <figure
                             id="9b396d09-fc43-4b81-8933-d7701227ba2f"
                             class="image"
@@ -355,10 +355,19 @@
                           </figure>
                         </li>
                       </ul>
+                      <ul
+                        id="bff63f2b-ba8f-4f08-af40-1404da5fc7fc"
+                        class="bulleted-list"
+                      >
+                        <li style="list-style-type: circle">
+                          Show all rows:
+                          <code>any&#x27; OR &#x27;1&#x27; = &#x27;1</code>
+                        </li>
+                      </ul>
                     </li>
                   </ul>
                   <ul
-                    id="bff63f2b-ba8f-4f08-af40-1404da5fc7fc"
+                    id="12b8e91d-cc97-4443-b51b-0e43132beb55"
                     class="bulleted-list"
                   >
                     <li style="list-style-type: disc">
@@ -388,94 +397,95 @@
       </code></pre>
                     </li>
                   </ul>
-                  <h3 id="c6356a5b-a8dc-4d1d-8b52-678178819ccf" class="">
-                    <details open="">
-                      <summary>
-                        4.3 Issue: Lack of Input Validation and Sanitization for
-                        <code><strong>username</strong></code>
-                      </summary>
-                    </details>
-                  </h3>
-                  <div class="indented">
-                    <ul
-                      id="6bc1b6c7-4421-4cc5-bc34-1877710f9ef5"
-                      class="bulleted-list"
-                    >
-                      <li style="list-style-type: disc">
-                        Location: POST
-                        <code><strong>/rides</strong></code> endpoint
-                      </li>
-                    </ul>
-                    <ul
-                      id="f39c273c-017a-4801-87f6-6fed6cf5a339"
-                      class="bulleted-list"
-                    >
-                      <li style="list-style-type: disc">Severity: High</li>
-                    </ul>
-                    <ul
-                      id="8930edc9-a45d-4ead-8f63-907e0cff8420"
-                      class="bulleted-list"
-                    >
-                      <li style="list-style-type: disc">
-                        Description: During the black-box testing and manual
-                        code review, we observed that the
-                        <code><strong>/rides</strong></code> endpoint does not
-                        properly validate and sanitize the
-                        <code><strong>username</strong></code> input before
-                        inserting it into the database. This may lead to
-                        potential security vulnerabilities, such as Cross-Site
-                        Scripting (XSS) attacks or database inconsistencies.
-                      </li>
-                    </ul>
-                    <ul
-                      id="49da121e-8955-4421-8df7-c3eab53f0adf"
-                      class="bulleted-list"
-                    >
-                      <li style="list-style-type: disc">
-                        Proof of vulnerability: Screenshots demonstrating the
-                        lack of input validation and sanitization (e.g. we
-                        injected something cool):
-                        <figure
-                          id="61708f7d-ca34-48a7-92fd-e7350342e34b"
-                          class="image"
-                        >
-                          <a
-                            href="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%202.png"
-                            ><img
-                              style="width: 1197px"
-                              src="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%202.png"
-                          /></a>
-                        </figure>
-                        <figure
-                          id="67ec915a-9de0-4d55-b605-52e2ec204760"
-                          class="image"
-                        >
-                          <a
-                            href="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%203.png"
-                            ><img
-                              style="width: 931px"
-                              src="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%203.png"
-                          /></a>
-                        </figure>
-                      </li>
-                    </ul>
-                    <p id="76574f0a-ae12-49d6-8b12-48919b3f1bdb" class=""></p>
-                    <ul
-                      id="a9284d2f-fe42-499f-9cbe-81cffe43b071"
-                      class="bulleted-list"
-                    >
-                      <li style="list-style-type: disc">
-                        Resolution: To mitigate this issue, since the
-                        <code><strong>validator</strong></code> module is
-                        already installed, we recommend updating the code in the
-                        <code><strong>/rides</strong></code> endpoint to
-                        sanitize and validate the
-                        <code><strong>username</strong></code> input before
-                        processing it further. Modify the code as follows:
-                        <pre
-                          id="b57822ee-86ac-4d10-9ea5-a953f506c155"
-                          class="code code-wrap"
-                        ><code>var validator = require(&#x27;validator&#x27;);
+                </div>
+              </details>
+              <details open="">
+                <summary
+                  style="font-weight: 600; font-size: 1.25em; line-height: 1.3"
+                >
+                  4.3 Issue: Lack of Input Validation and Sanitization for
+                  <code><strong>username</strong></code>
+                </summary>
+                <div class="indented">
+                  <ul
+                    id="6bc1b6c7-4421-4cc5-bc34-1877710f9ef5"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      Location: POST
+                      <code><strong>/rides</strong></code> endpoint
+                    </li>
+                  </ul>
+                  <ul
+                    id="f39c273c-017a-4801-87f6-6fed6cf5a339"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">Severity: High</li>
+                  </ul>
+                  <ul
+                    id="8930edc9-a45d-4ead-8f63-907e0cff8420"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      Description: During the black-box testing and manual code
+                      review, we observed that the
+                      <code><strong>/rides</strong></code> endpoint does not
+                      properly validate and sanitize the
+                      <code><strong>username</strong></code> input before
+                      inserting it into the database. This may lead to potential
+                      security vulnerabilities, such as Cross-Site Scripting
+                      (XSS) attacks or database inconsistencies.
+                    </li>
+                  </ul>
+                  <ul
+                    id="49da121e-8955-4421-8df7-c3eab53f0adf"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      Proof of vulnerability: Screenshots demonstrating the lack
+                      of input validation and sanitization (e.g. we injected
+                      something cool):
+                      <figure
+                        id="61708f7d-ca34-48a7-92fd-e7350342e34b"
+                        class="image"
+                      >
+                        <a
+                          href="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%202.png"
+                          ><img
+                            style="width: 1197px"
+                            src="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%202.png"
+                        /></a>
+                      </figure>
+                      <figure
+                        id="67ec915a-9de0-4d55-b605-52e2ec204760"
+                        class="image"
+                      >
+                        <a
+                          href="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%203.png"
+                          ><img
+                            style="width: 931px"
+                            src="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%203.png"
+                        /></a>
+                      </figure>
+                    </li>
+                  </ul>
+                  <p id="76574f0a-ae12-49d6-8b12-48919b3f1bdb" class=""></p>
+                  <ul
+                    id="a9284d2f-fe42-499f-9cbe-81cffe43b071"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      Resolution: To mitigate this issue, since the
+                      <code><strong>validator</strong></code> module is already
+                      installed, we recommend updating the code in the
+                      <code><strong>/rides</strong></code> endpoint to sanitize
+                      and validate the
+                      <code><strong>username</strong></code> input before
+                      processing it further. Modify the code as follows:
+                      <pre
+                        id="b57822ee-86ac-4d10-9ea5-a953f506c155"
+                        class="code code-wrap"
+                      ><code>var validator = require(&#x27;validator&#x27;);
 
       // ...
 
@@ -492,96 +502,104 @@
       } else {
         response.send(&#x27;{&quot;error&quot;:&quot;Whoops, something is wrong with your data!&quot;}&#x27;);
       }</code></pre>
-                        <p id="3f672660-129e-4117-addf-b57cae36c9d0" class="">
-                          This change ensures that the
-                          <code><strong>username</strong></code> input is
-                          alphanumeric and has a maximum length of 20
-                          characters. Implementing proper input validation and
-                          sanitization will help prevent security
-                          vulnerabilities and improve the overall security
-                          posture of the application.
-                        </p>
-                      </li>
-                    </ul>
-                    <h3 id="f86a33c2-beee-4810-884d-2921f39ef85d" class="">
-                      <details open="">
-                        <summary>
-                          4.4 Issue: Lack of Input Validation and Sanitization
-                          for
-                          <code><strong>username</strong></code>
-                        </summary>
-                      </details>
-                    </h3>
-                    <div class="indented">
-                      <ul
-                        id="b1cb5264-0208-4c13-8a8a-a7279e599aab"
-                        class="bulleted-list"
+                      <p id="3f672660-129e-4117-addf-b57cae36c9d0" class="">
+                        This change ensures that the
+                        <code><strong>username</strong></code> input is
+                        alphanumeric and has a maximum length of 20 characters.
+                        Implementing proper input validation and sanitization
+                        will help prevent security vulnerabilities and improve
+                        the overall security posture of the application.
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              </details>
+              <details open="">
+                <summary
+                  style="font-weight: 600; font-size: 1.25em; line-height: 1.3"
+                >
+                  4.4 Issue: Lack of Input Validation and Sanitization for
+                  <code><strong>username</strong></code>
+                </summary>
+                <div class="indented">
+                  <ul
+                    id="b1cb5264-0208-4c13-8a8a-a7279e599aab"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      Location: POST
+                      <code><strong>/update</strong></code> endpoint
+                    </li>
+                  </ul>
+                  <ul
+                    id="5d7aaf61-1ac4-4366-b985-586cb2487d09"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">Severity: High</li>
+                  </ul>
+                  <ul
+                    id="0e449d9f-7432-4c5e-90ce-9098fbfc663e"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      Description: During the black-box testing and manual code
+                      review, we observed that the
+                      <code><strong>/update</strong></code> endpoint does not
+                      properly validate and sanitize the
+                      <code><strong>username</strong></code> input before
+                      inserting it into the database. This may lead to potential
+                      security vulnerabilities, such as Cross-Site Scripting
+                      (XSS) attacks or database inconsistencies.
+                    </li>
+                  </ul>
+                  <ul
+                    id="a9f316de-ddaf-488a-9cd5-abe73ee8dcae"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      Proof of vulnerability: A screenshot demonstrating the
+                      lack of input validation and sanitization:
+                      <p id="28c5adbb-2082-44e0-9fff-aa0b7e7d9334" class="">
+                        Similar to <code>/rides</code>, we perform
+                      </p>
+                      <figure
+                        id="f2eb121d-50f3-40b6-90a9-fb68bb2077d2"
+                        class="image"
                       >
-                        <li style="list-style-type: disc">
-                          Location: POST
-                          <code><strong>/update</strong></code> endpoint
-                        </li>
-                      </ul>
-                      <ul
-                        id="5d7aaf61-1ac4-4366-b985-586cb2487d09"
-                        class="bulleted-list"
-                      >
-                        <li style="list-style-type: disc">Severity: High</li>
-                      </ul>
-                      <ul
-                        id="0e449d9f-7432-4c5e-90ce-9098fbfc663e"
-                        class="bulleted-list"
-                      >
-                        <li style="list-style-type: disc">
-                          Description: During the black-box testing and manual
-                          code review, we observed that the
-                          <code><strong>/update</strong></code> endpoint does
-                          not properly validate and sanitize the
-                          <code><strong>username</strong></code> input before
-                          inserting it into the database. This may lead to
-                          potential security vulnerabilities, such as Cross-Site
-                          Scripting (XSS) attacks or database inconsistencies.
-                        </li>
-                      </ul>
-                      <ul
-                        id="a9f316de-ddaf-488a-9cd5-abe73ee8dcae"
-                        class="bulleted-list"
-                      >
-                        <li style="list-style-type: disc">
-                          Proof of vulnerability: A screenshot demonstrating the
-                          lack of input validation and sanitization:
-                          <p id="28c5adbb-2082-44e0-9fff-aa0b7e7d9334" class="">
-                            Similar to <code>/rides</code>, we perform
-                          </p>
-                          <figure
-                            id="f2eb121d-50f3-40b6-90a9-fb68bb2077d2"
-                            class="image"
-                          >
-                            <a
-                              href="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%204.png"
-                              ><img
-                                style="width: 1288px"
-                                src="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%204.png"
-                            /></a>
-                          </figure>
-                        </li>
-                      </ul>
+                        <a
+                          href="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%204.png"
+                          ><img
+                            style="width: 1288px"
+                            src="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%204.png"
+                        /></a>
+                      </figure>
                       <ul
                         id="3bdbca5b-11a9-443b-9cc1-41eba87e2414"
                         class="bulleted-list"
                       >
-                        <li style="list-style-type: disc">
-                          Resolution: To mitigate this issue, since the
-                          <code><strong>validator</strong></code> module is
-                          already installed, we recommend updating the code in
-                          the <code><strong>/update</strong></code> endpoint to
-                          sanitize and validate the
-                          <code><strong>username</strong></code> input before
-                          processing it further. Modify the code as follows:
-                          <pre
-                            id="d0065b30-9406-4860-96fa-245236c24d9a"
-                            class="code code-wrap"
-                          ><code>var validator = require(&#x27;validator&#x27;);
+                        <li style="list-style-type: circle">
+                          If the site had a page listing all the vehicles
+                          (currently not), the injection code would execute.
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                  <ul
+                    id="832f7687-bd18-47a7-b7a9-6226979aa5b0"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      Resolution: To mitigate this issue, since the
+                      <code><strong>validator</strong></code> module is already
+                      installed, we recommend updating the code in the
+                      <code><strong>/update</strong></code> endpoint to sanitize
+                      and validate the
+                      <code><strong>username</strong></code> input before
+                      processing it further. Modify the code as follows:
+                      <pre
+                        id="d0065b30-9406-4860-96fa-245236c24d9a"
+                        class="code code-wrap"
+                      ><code>var validator = require(&#x27;validator&#x27;);
 
       // ...
 
@@ -598,228 +616,205 @@
       } else {
         response.send(&#x27;{&quot;error&quot;:&quot;Access denied&quot;}&#x27;);
       }</code></pre>
-                          <p id="a50b24a7-9f81-4247-82c1-1b7a31044d82" class="">
-                            This change ensures that the
-                            <code><strong>username</strong></code> input is
-                            alphanumeric and has a maximum length of 20
-                            characters. Implementing proper input validation and
-                            sanitization will help prevent security
-                            vulnerabilities and improve the overall security
-                            posture of the application.
-                          </p>
-                        </li>
-                      </ul>
-                      <h3 id="6c13cf4e-3d43-4fda-b215-48d6c45cfb98" class="">
-                        <details open="">
-                          <summary>4.5 Issue: Insecure CORS Headers</summary>
-                        </details>
-                      </h3>
-                      <div class="indented">
-                        <ul
-                          id="6a227e2c-aecf-44a8-a505-07128c18c275"
-                          class="bulleted-list"
-                        >
-                          <li style="list-style-type: disc">
-                            Location: POST
-                            <code><strong>/rides</strong></code> endpoint
-                          </li>
-                        </ul>
-                        <ul
-                          id="ee4bd99f-2200-4826-ae89-1b49cdbc7fbc"
-                          class="bulleted-list"
-                        >
-                          <li style="list-style-type: disc">
-                            Severity: Medium
-                          </li>
-                        </ul>
-                        <ul
-                          id="009e3796-8583-4657-b4e6-61ca44b2c831"
-                          class="bulleted-list"
-                        >
-                          <li style="list-style-type: disc">
-                            Description: During the manual code review, we
-                            noticed that the application sets overly permissive
-                            Cross-Origin Resource Sharing (CORS) headers at the
-                            <code><strong>/rides</strong></code> endpoint. The
-                            current configuration allows any origin to access
-                            the resources, which may lead to potential security
-                            risks, such as Cross-Site Request Forgery (CSRF)
-                            attacks or unintended data leakage.
-                          </li>
-                        </ul>
-                        <ul
-                          id="96071cb7-fe08-4afc-b501-d7b36a52ba4a"
-                          class="bulleted-list"
-                        >
-                          <li style="list-style-type: disc">
-                            Proof of vulnerability: A screenshot showcasing the
-                            CORS headers being set to allow any origin:
-                            <figure
-                              id="2eb12755-910e-4395-a3ed-857b280f96ec"
-                              class="image"
-                            >
-                              <a
-                                href="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%205.png"
-                                ><img
-                                  style="width: 584px"
-                                  src="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%205.png"
-                              /></a>
-                            </figure>
-                          </li>
-                        </ul>
-                        <ul
-                          id="90777a93-5a0e-4c94-9907-bfa77e6d88d6"
-                          class="bulleted-list"
-                        >
-                          <li style="list-style-type: disc">
-                            Resolution: To mitigate this issue, we recommend
-                            restricting the allowed origins to specific, trusted
-                            domains. Modify the CORS headers in the
-                            <code><strong>/rides</strong></code> endpoint as
-                            follows:
-                            <pre
-                              id="d5de7170-7ec1-4cc9-bd18-43f6c66a8d27"
-                              class="code code-wrap"
-                            ><code>const allowedOrigins = [&quot;https://example.com&quot;, &quot;https://another-trusted-domain.com&quot;];
-
-      const origin = request.headers.origin;
-      if (allowedOrigins.includes(origin)) {
-        response.header(&quot;Access-Control-Allow-Origin&quot;, origin);
-      } else {
-        response.status(403).send(&quot;Unauthorized origin&quot;);
-      }
-      response.header(&quot;Access-Control-Allow-Headers&quot;, &quot;X-Requested-With, Content-Type&quot;);</code></pre>
-                            <p
-                              id="21e50698-02a3-4da0-9ac7-e79c45c19d8d"
-                              class=""
-                            >
-                              Replace
-                              <code><strong>https://example.com</strong></code>
-                              and
-                              <code
-                                ><strong
-                                  >https://another-trusted-domain.com</strong
-                                ></code
-                              >
-                              with the actual trusted domains that should be
-                              allowed to access the resources. This change will
-                              ensure that only the specified domains can
-                              interact with the
-                              <code><strong>/rides</strong></code> endpoint,
-                              reducing the risk of unauthorized cross-origin
-                              requests.
-                            </p>
-                          </li>
-                        </ul>
-                        <h3 id="625293c3-d317-4c4b-869f-cd2897c3ffbb" class="">
-                          <details open="">
-                            <summary>4.6 Issue: Insecure CORS Headers</summary>
-                          </details>
-                        </h3>
-                        <div class="indented">
-                          <ul
-                            id="38479996-36cd-4fd3-b103-d676ac004de8"
-                            class="bulleted-list"
-                          >
-                            <li style="list-style-type: disc">
-                              Location: POST
-                              <code><strong>/update</strong></code> endpoint
-                            </li>
-                          </ul>
-                          <ul
-                            id="a9cf60ca-015d-4e55-8bea-999da6b166d9"
-                            class="bulleted-list"
-                          >
-                            <li style="list-style-type: disc">
-                              Severity: Medium
-                            </li>
-                          </ul>
-                          <ul
-                            id="5a2be4e8-bc84-471d-9dcc-15b8af4c767b"
-                            class="bulleted-list"
-                          >
-                            <li style="list-style-type: disc">
-                              Description: During the manual code review, we
-                              noticed that the application sets overly
-                              permissive Cross-Origin Resource Sharing (CORS)
-                              headers at the
-                              <code><strong>/update</strong></code> endpoint.
-                              The current configuration allows any origin to
-                              access the resources, which may lead to potential
-                              security risks, such as Cross-Site Request Forgery
-                              (CSRF) attacks or unintended data leakage.
-                              <p
-                                id="6e87d11b-9344-4fe4-9eed-a73b66e57bce"
-                                class=""
-                              >
-                                Proof of vulnerability: A screenshot showcasing
-                                the CORS headers being set to allow any origin:
-                              </p>
-                              <figure
-                                id="15f44697-78e3-49df-9b52-b9c30efc318f"
-                                class="image"
-                              >
-                                <a
-                                  href="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%206.png"
-                                  ><img
-                                    style="width: 584px"
-                                    src="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%206.png"
-                                /></a>
-                              </figure>
-                            </li>
-                          </ul>
-                          <ul
-                            id="edae4026-4bbd-4b8e-bd48-08905dda599d"
-                            class="bulleted-list"
-                          >
-                            <li style="list-style-type: disc">
-                              Resolution: To mitigate this issue, we recommend
-                              restricting the allowed origins to specific,
-                              trusted domains. Modify the CORS headers in the
-                              <code><strong>/update</strong></code> endpoint as
-                              follows:
-                              <pre
-                                id="9519fa82-b7ab-40ef-a8f9-2b3dc2ad1baf"
-                                class="code code-wrap"
-                              ><code>const allowedOrigins = [&quot;https://example.com&quot;, &quot;https://another-trusted-domain.com&quot;];
-
-      const origin = request.headers.origin;
-      if (allowedOrigins.includes(origin)) {
-        response.header(&quot;Access-Control-Allow-Origin&quot;, origin);
-      } else {
-        response.status(403).send(&quot;Unauthorized origin&quot;);
-      }
-      response.header(&quot;Access-Control-Allow-Headers&quot;, &quot;X-Requested-With, Content-Type&quot;);</code></pre>
-                              <p
-                                id="6a37cf5a-45ab-4908-8b69-65e881a30b44"
-                                class=""
-                              >
-                                Replace
-                                <code
-                                  ><strong>https://example.com</strong></code
-                                >
-                                and
-                                <code
-                                  ><strong
-                                    >https://another-trusted-domain.com</strong
-                                  ></code
-                                >
-                                with the actual trusted domains that should be
-                                allowed to access the resources. This change
-                                will ensure that only the specified domains can
-                                interact with the
-                                <code><strong>/update</strong></code> endpoint,
-                                reducing the risk of unauthorized cross-origin
-                                requests.
-                              </p>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                      <p id="a50b24a7-9f81-4247-82c1-1b7a31044d82" class="">
+                        This change ensures that the
+                        <code><strong>username</strong></code> input is
+                        alphanumeric and has a maximum length of 20 characters.
+                        Implementing proper input validation and sanitization
+                        will help prevent security vulnerabilities and improve
+                        the overall security posture of the application.
+                      </p>
+                    </li>
+                  </ul>
                 </div>
-              </div>
+              </details>
+              <details open="">
+                <summary
+                  style="font-weight: 600; font-size: 1.25em; line-height: 1.3"
+                >
+                  4.5 Issue: Insecure CORS Headers
+                </summary>
+                <div class="indented">
+                  <ul
+                    id="6a227e2c-aecf-44a8-a505-07128c18c275"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      Location: POST
+                      <code><strong>/rides</strong></code> endpoint
+                    </li>
+                  </ul>
+                  <ul
+                    id="ee4bd99f-2200-4826-ae89-1b49cdbc7fbc"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">Severity: Medium</li>
+                  </ul>
+                  <ul
+                    id="009e3796-8583-4657-b4e6-61ca44b2c831"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      Description: During the manual code review, we noticed
+                      that the application sets overly permissive Cross-Origin
+                      Resource Sharing (CORS) headers at the
+                      <code><strong>/rides</strong></code> endpoint. The current
+                      configuration allows any origin to access the resources,
+                      which may lead to potential security risks, such as
+                      Cross-Site Request Forgery (CSRF) attacks or unintended
+                      data leakage.
+                    </li>
+                  </ul>
+                  <ul
+                    id="96071cb7-fe08-4afc-b501-d7b36a52ba4a"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      Proof of vulnerability: A screenshot showcasing the CORS
+                      headers being set to allow any origin:
+                      <figure
+                        id="2eb12755-910e-4395-a3ed-857b280f96ec"
+                        class="image"
+                      >
+                        <a
+                          href="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%205.png"
+                          ><img
+                            style="width: 584px"
+                            src="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%205.png"
+                        /></a>
+                      </figure>
+                    </li>
+                  </ul>
+                  <ul
+                    id="90777a93-5a0e-4c94-9907-bfa77e6d88d6"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      Resolution: To mitigate this issue, we recommend
+                      restricting the allowed origins to specific, trusted
+                      domains. Modify the CORS headers in the
+                      <code><strong>/rides</strong></code> endpoint as follows:
+                      <pre
+                        id="d5de7170-7ec1-4cc9-bd18-43f6c66a8d27"
+                        class="code code-wrap"
+                      ><code>const allowedOrigins = [&quot;https://example.com&quot;, &quot;https://another-trusted-domain.com&quot;];
+
+      const origin = request.headers.origin;
+      if (allowedOrigins.includes(origin)) {
+        response.header(&quot;Access-Control-Allow-Origin&quot;, origin);
+      } else {
+        response.status(403).send(&quot;Unauthorized origin&quot;);
+      }
+      response.header(&quot;Access-Control-Allow-Headers&quot;, &quot;X-Requested-With, Content-Type&quot;);</code></pre>
+                      <p id="21e50698-02a3-4da0-9ac7-e79c45c19d8d" class="">
+                        Replace
+                        <code><strong>https://example.com</strong></code> and
+                        <code
+                          ><strong
+                            >https://another-trusted-domain.com</strong
+                          ></code
+                        >
+                        with the actual trusted domains that should be allowed
+                        to access the resources. This change will ensure that
+                        only the specified domains can interact with the
+                        <code><strong>/rides</strong></code> endpoint, reducing
+                        the risk of unauthorized cross-origin requests.
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              </details>
+              <details open="">
+                <summary
+                  style="font-weight: 600; font-size: 1.25em; line-height: 1.3"
+                >
+                  4.6 Issue: Insecure CORS Headers
+                </summary>
+                <div class="indented">
+                  <ul
+                    id="38479996-36cd-4fd3-b103-d676ac004de8"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      Location: POST
+                      <code><strong>/update</strong></code> endpoint
+                    </li>
+                  </ul>
+                  <ul
+                    id="a9cf60ca-015d-4e55-8bea-999da6b166d9"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">Severity: Medium</li>
+                  </ul>
+                  <ul
+                    id="5a2be4e8-bc84-471d-9dcc-15b8af4c767b"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      Description: During the manual code review, we noticed
+                      that the application sets overly permissive Cross-Origin
+                      Resource Sharing (CORS) headers at the
+                      <code><strong>/update</strong></code> endpoint. The
+                      current configuration allows any origin to access the
+                      resources, which may lead to potential security risks,
+                      such as Cross-Site Request Forgery (CSRF) attacks or
+                      unintended data leakage.
+                      <p id="6e87d11b-9344-4fe4-9eed-a73b66e57bce" class="">
+                        Proof of vulnerability: A screenshot showcasing the CORS
+                        headers being set to allow any origin:
+                      </p>
+                      <figure
+                        id="15f44697-78e3-49df-9b52-b9c30efc318f"
+                        class="image"
+                      >
+                        <a
+                          href="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%206.png"
+                          ><img
+                            style="width: 584px"
+                            src="Report%20de91bc278afa42969d5f567b8ee744e6/Untitled%206.png"
+                        /></a>
+                      </figure>
+                    </li>
+                  </ul>
+                  <ul
+                    id="edae4026-4bbd-4b8e-bd48-08905dda599d"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      Resolution: To mitigate this issue, we recommend
+                      restricting the allowed origins to specific, trusted
+                      domains. Modify the CORS headers in the
+                      <code><strong>/update</strong></code> endpoint as follows:
+                      <pre
+                        id="9519fa82-b7ab-40ef-a8f9-2b3dc2ad1baf"
+                        class="code code-wrap"
+                      ><code>const allowedOrigins = [&quot;https://example.com&quot;, &quot;https://another-trusted-domain.com&quot;];
+
+      const origin = request.headers.origin;
+      if (allowedOrigins.includes(origin)) {
+        response.header(&quot;Access-Control-Allow-Origin&quot;, origin);
+      } else {
+        response.status(403).send(&quot;Unauthorized origin&quot;);
+      }
+      response.header(&quot;Access-Control-Allow-Headers&quot;, &quot;X-Requested-With, Content-Type&quot;);</code></pre>
+                      <p id="6a37cf5a-45ab-4908-8b69-65e881a30b44" class="">
+                        Replace
+                        <code><strong>https://example.com</strong></code> and
+                        <code
+                          ><strong
+                            >https://another-trusted-domain.com</strong
+                          ></code
+                        >
+                        with the actual trusted domains that should be allowed
+                        to access the resources. This change will ensure that
+                        only the specified domains can interact with the
+                        <code><strong>/update</strong></code> endpoint, reducing
+                        the risk of unauthorized cross-origin requests.
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              </details>
               <h2 id="0c04e275-af7a-440a-a72a-f28a5b74d8b7" class="">
                 5. Conclusion
               </h2>
@@ -858,135 +853,7 @@
               <p id="d4dff8e7-48d0-454b-9a59-37d722b46d02" class=""></p>
             </div>
           </article>
-
-          <div class="faq-list">
-            <ul>
-              <li data-aos="fade-up" data-aos-delay="100">
-                <i class="bx bx-help-circle icon-help"></i>
-                <a
-                  data-bs-toggle="collapse"
-                  class="collapse"
-                  data-bs-target="#faq-list-1"
-                  >Non consectetur a erat nam at lectus urna duis?
-                  <i class="bx bx-chevron-down icon-show"></i
-                  ><i class="bx bx-chevron-up icon-close"></i
-                ></a>
-                <div
-                  id="faq-list-1"
-                  class="collapse show"
-                  data-bs-parent=".faq-list"
-                >
-                  <p>
-                    Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id
-                    volutpat lacus laoreet non curabitur gravida. Venenatis
-                    lectus magna fringilla urna porttitor rhoncus dolor purus
-                    non.
-                  </p>
-                </div>
-              </li>
-
-              <li data-aos="fade-up" data-aos-delay="200">
-                <i class="bx bx-help-circle icon-help"></i>
-                <a
-                  data-bs-toggle="collapse"
-                  data-bs-target="#faq-list-2"
-                  class="collapsed"
-                  >Feugiat scelerisque varius morbi enim nunc?
-                  <i class="bx bx-chevron-down icon-show"></i
-                  ><i class="bx bx-chevron-up icon-close"></i
-                ></a>
-                <div
-                  id="faq-list-2"
-                  class="collapse"
-                  data-bs-parent=".faq-list"
-                >
-                  <p>
-                    Dolor sit amet consectetur adipiscing elit pellentesque
-                    habitant morbi. Id interdum velit laoreet id donec ultrices.
-                    Fringilla phasellus faucibus scelerisque eleifend donec
-                    pretium. Est pellentesque elit ullamcorper dignissim. Mauris
-                    ultrices eros in cursus turpis massa tincidunt dui.
-                  </p>
-                </div>
-              </li>
-
-              <li data-aos="fade-up" data-aos-delay="300">
-                <i class="bx bx-help-circle icon-help"></i>
-                <a
-                  data-bs-toggle="collapse"
-                  data-bs-target="#faq-list-3"
-                  class="collapsed"
-                  >Dolor sit amet consectetur adipiscing elit?
-                  <i class="bx bx-chevron-down icon-show"></i
-                  ><i class="bx bx-chevron-up icon-close"></i
-                ></a>
-                <div
-                  id="faq-list-3"
-                  class="collapse"
-                  data-bs-parent=".faq-list"
-                >
-                  <p>
-                    Eleifend mi in nulla posuere sollicitudin aliquam ultrices
-                    sagittis orci. Faucibus pulvinar elementum integer enim. Sem
-                    nulla pharetra diam sit amet nisl suscipit. Rutrum tellus
-                    pellentesque eu tincidunt. Lectus urna duis convallis
-                    convallis tellus. Urna molestie at elementum eu facilisis
-                    sed odio morbi quis
-                  </p>
-                </div>
-              </li>
-
-              <li data-aos="fade-up" data-aos-delay="400">
-                <i class="bx bx-help-circle icon-help"></i>
-                <a
-                  data-bs-toggle="collapse"
-                  data-bs-target="#faq-list-4"
-                  class="collapsed"
-                  >Tempus quam pellentesque nec nam aliquam sem et tortor
-                  consequat? <i class="bx bx-chevron-down icon-show"></i
-                  ><i class="bx bx-chevron-up icon-close"></i
-                ></a>
-                <div
-                  id="faq-list-4"
-                  class="collapse"
-                  data-bs-parent=".faq-list"
-                >
-                  <p>
-                    Molestie a iaculis at erat pellentesque adipiscing commodo.
-                    Dignissim suspendisse in est ante in. Nunc vel risus commodo
-                    viverra maecenas accumsan. Sit amet nisl suscipit adipiscing
-                    bibendum est. Purus gravida quis blandit turpis cursus in.
-                  </p>
-                </div>
-              </li>
-
-              <li data-aos="fade-up" data-aos-delay="500">
-                <i class="bx bx-help-circle icon-help"></i>
-                <a
-                  data-bs-toggle="collapse"
-                  data-bs-target="#faq-list-5"
-                  class="collapsed"
-                  >Tortor vitae purus faucibus ornare. Varius vel pharetra vel
-                  turpis nunc eget lorem dolor?
-                  <i class="bx bx-chevron-down icon-show"></i
-                  ><i class="bx bx-chevron-up icon-close"></i
-                ></a>
-                <div
-                  id="faq-list-5"
-                  class="collapse"
-                  data-bs-parent=".faq-list"
-                >
-                  <p>
-                    Laoreet sit amet cursus sit amet dictum sit amet justo.
-                    Mauris vitae ultricies leo integer malesuada nunc vel.
-                    Tincidunt eget nullam non nisi est sit amet. Turpis nunc
-                    eget lorem dolor sed. Ut venenatis tellus in metus vulputate
-                    eu scelerisque.
-                  </p>
-                </div>
-              </li>
-            </ul>
-          </div>
+          <!-- End blog entry -->
         </div>
       </section>
       <!-- End Frequently Asked Questions Section -->
